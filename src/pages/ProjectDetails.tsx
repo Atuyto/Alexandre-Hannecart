@@ -16,18 +16,18 @@ function ProjectDetails() {
 
             {/* Section 1 : Description et Image */}
             <div className="flex flex-col md:flex-row items-center gap-8">
-                <img src={project.image} alt={project.name} className="w-full md:w-1/2 rounded-lg" />
+                <img src={project.carouselImages[1]} alt={project.name} className="w-full md:w-1/2 rounded-lg" />
                 <p className="text-lg md:w-1/2">{project.description}</p>
             </div>
 
             {/* Section 2 : Objectif et Détails */}
             <div className="flex flex-col-reverse md:flex-row items-center gap-8">
                 <p className="text-lg md:w-1/2">
-                    <strong>Objectif :</strong> {project.objective}
+                    <strong></strong> {project.objective}
                     <br />
                     {project.details}
                 </p>
-                <img src={project.image} alt={`Objectif de ${project.name}`} className="w-full md:w-1/2 rounded-lg" />
+                <img src={project.carouselImages[2]} alt={`Objectif de ${project.name}`} className="w-full md:w-1/2 rounded-lg" />
             </div>
 
             {/* Section 3 : Carrousel */}

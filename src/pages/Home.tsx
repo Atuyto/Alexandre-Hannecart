@@ -5,8 +5,9 @@ const projects = [
   {
     id: 1,
     name: "Möbius",
-    description: "Une application pour faire du tabata",
+    Shortdescription: "Une application pour faire du tabata",
     image: "https://cdn.discordapp.com/attachments/837411218976931860/1313958823416954910/ic_launcher-playstore.png?ex=67520703&is=6750b583&hm=c3ae6fc04b2ea4e5658049f9486bca8e0fdab4c9c4d796edee8eb11031b59ac6&",
+    Description: "",
     objective: "L'objectif est de fournir un outil simple pour gérer ses séances d'entraînement.",
     details: "Möbius permet de configurer des exercices avec des temps de travail et de repos personnalisés.",
     carouselImages: ["/images/mobius-1.jpg", "/images/mobius-2.jpg", "/images/mobius-3.jpg"],
@@ -14,17 +15,19 @@ const projects = [
   {
     id: 2,
     name: "Arbitrhand",
-    description: "Une application pour la gestion de matchs de handball",
+    Shortdescription: "Une application pour la gestion de matchs de handball",
     image: "https://cdn.discordapp.com/attachments/837411218976931860/1313959137566261268/ic_launcher-playstore.png?ex=6752074e&is=6750b5ce&hm=d07c6c53327fc3302078ff00bf5d04a421e2564b3b4e238fd69f68816997d080&",
-    objective: "Faciliter le suivi des scores et des statistiques en temps réel pour les arbitres.",
+    Description: "ARBITRHAND est un projet personnel que j'ai entrepris en collaboration avec l'un de mes amis. Notre objectif était de concevoir une application mobile destinée à faciliter la gestion des arbitrages de handball. Cette initiative a été motivée par notre passion commune pour le sport ainsi que par le désir de répondre à un besoin concret dans la communauté des arbitres et des amateurs de handball. Tout au long de ce projet, nous avons mis l'accent sur l'efficacité et la convivialité de l'application, cherchant à fournir une solution pratique et intuitive pour les arbitres, tout en offrant une expérience améliorée pour les utilisateurs. ",
+    objective: "Notre objectif principal était d'offrir une personnalisation complète de la configuration des matchs à travers l'application. Grâce à ce projet, j'ai pu réaliser un travail pour un client dans des conditions optimales. Cette expérience m'a permis de développer mes compétences en front-end, en relevant de nombreux défis, notamment celui de l'affichage dynamique des pénalités. De plus, j'ai acquis une compréhension approfondie de l'architecture MVC (Modèle-Vue-Contrôleur), qui a été cruciale pour le développement de l'application. Pour garantir des mises à jour constantes et éviter toute régression de l'application, j'ai intégré des tests JUnit dans le processus de développement, assurant ainsi la qualité et la fiabilité du produit final. ",
     details: "Arbitrhand intègre des fonctionnalités avancées pour le suivi des joueurs et la gestion des sanctions.",
-    carouselImages: ["/images/arbitrhand-1.jpg", "/images/arbitrhand-2.jpg", "/images/arbitrhand-3.jpg"],
+    carouselImages: ["https://cdn.discordapp.com/attachments/837411218976931860/1313968205609439333/home.png?ex=67520fc0&is=6750be40&hm=8482f841f756e82e8430600a3207be6394e4084d1e59ba9f8c563c9b73756fd7&", "https://cdn.discordapp.com/attachments/837411218976931860/1313968250375114772/login.png?ex=67520fcb&is=6750be4b&hm=e3054f7b64f75003195a4b0e38c755fd56376a76d6c88102cfcd724df439ca3e&", "https://cdn.discordapp.com/attachments/837411218976931860/1313968826488066088/home.png?ex=67521054&is=6750bed4&hm=ee3bc5702653ab19a7db8560f153450eb38b99ba3d3162901c9971efedd3fc2b&"],
   },
   {
     id: 3,
     name: "The Rift",
-    description: "Un jeu en réalité augmentée",
+    Shortdescription: "Un jeu en réalité augmentée",
     image: "https://cdn.discordapp.com/attachments/837411218976931860/1313959358245109821/ic_launcher-playstore.png?ex=67520783&is=6750b603&hm=66075588155d619c2a382e6ff3ee13fbc346c623011c3c53335e8fc63c1b2656&",
+    Description: "",
     objective: "Créer une expérience immersive mêlant réalité et virtuel.",
     details: "The Rift utilise des technologies avancées pour transformer votre environnement en terrain de jeu.",
     carouselImages: ["/images/rift-1.jpg", "/images/rift-2.jpg", "/images/rift-3.jpg"],
@@ -73,7 +76,7 @@ const Home = () => {
                     />
                   </div>
                   <h3 className="text-xl font-semibold mb-2">{project.name}</h3>
-                  <p className="text-muted-foreground mb-4">{project.description}</p>
+                  <p className="text-muted-foreground mb-4">{project.Shortdescription}</p>
                   <Link
                       to="/ProjectDetails"
                       state={project} // Passe toutes les données ici
