@@ -7,7 +7,7 @@ const Home = () => {
       <section className="min-h-screen flex items-center justify-center pt-16">
         <div className="container px-6">
           <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-3xl md:text-6xl font-bold mb-6">
+            <h1 className="text-2xl md:text-4xl font-bold mb-6">
               Je suis Alexandre, un étudiant dévoué en informatique qui se passionne pour le développement d’applications.
               j’aime transformer les idées en réalités, une ligne de code à la fois. Ensemble,
               <span className="text-primary"> façonnons l’avenir du numérique</span>
