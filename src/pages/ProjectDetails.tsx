@@ -16,7 +16,7 @@ function ProjectDetails() {
 
             {/* Section 1 : Description et Image */}
             <div className="flex flex-col md:flex-row items-center gap-8">
-                <img src={project.carouselImages[1]} alt={project.name} className="w-full md:w-1/2 max-w-md max-h-64 rounded-lg object-cover" />
+                <img src={project.carouselImages[1]} alt={project.name} className="w-full md:w-1/2 max-w-md max-h-64 rounded-lg object-contain" />
                 <p className="text-lg md:w-1/2">{project.description}</p>
             </div>
 
@@ -27,7 +27,7 @@ function ProjectDetails() {
                     <br />
                     {project.details}
                 </p>
-                <img src={project.carouselImages[2]} alt={`Objectif de ${project.name}`} className="w-full md:w-1/2 max-w-md max-h-64 rounded-lg object-cover" />
+                <img src={project.carouselImages[2]} alt={`Objectif de ${project.name}`} className="w-full md:w-1/2 max-w-md max-h-64 rounded-lg object-contain" />
             </div>
 
             {/* Section 3 : Carrousel */}
@@ -39,7 +39,7 @@ function ProjectDetails() {
                             key={index}
                             src={image}
                             alt={`Galerie ${index + 1}`}
-                            className="w-full md:w-1/2 max-w-md max-h-64 rounded-lg object-cover"
+                            className="w-full md:w-1/2 max-w-md max-h-64 rounded-lg object-contain"
                         />
                     ))}
                 </div>
