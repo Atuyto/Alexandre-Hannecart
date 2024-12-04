@@ -75,7 +75,7 @@ const Home = () => {
                   <h3 className="text-xl font-semibold mb-2">{project.name}</h3>
                   <p className="text-muted-foreground mb-4">{project.description}</p>
                   <Link
-                      to="/project"
+                      to="/ProjectDetails"
                       state={project} // Passe toutes les données ici
                       className="text-primary hover:text-primary/80 transition-colors inline-flex items-center gap-2"
                   >
