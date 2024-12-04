@@ -19,13 +19,13 @@ const Contact = () => {
     <div className="page-transition pt-24">
       <div className="container px-6">
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-4xl font-bold mb-12">Get in Touch</h1>
+          <h1 className="text-4xl font-bold mb-12">Contacter moi</h1>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             <div>
               <p className="text-muted-foreground mb-8">
-                I'm always interested in hearing about new projects and opportunities.
-                Feel free to reach out if you'd like to connect!
+                Je suis toujours intéressée par de nouveaux projets et de nouvelles opportunités.
+                N'hésitez pas à me contacter si vous souhaitez entrer en contact avec moi !
               </p>
 
               <div className="space-y-6">
@@ -35,7 +35,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <h3 className="font-semibold">Email</h3>
-                    <p className="text-muted-foreground">hello@example.com</p>
+                    <p className="text-muted-foreground">Alexandresoune@gmail.com</p>
                   </div>
                 </div>
 
@@ -45,7 +45,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <h3 className="font-semibold">Phone</h3>
-                    <p className="text-muted-foreground">+1 (555) 123-4567</p>
+                    <p className="text-muted-foreground">+33 06 10 58 55 48</p>
                   </div>
                 </div>
 
@@ -55,17 +55,17 @@ const Contact = () => {
                   </div>
                   <div>
                     <h3 className="font-semibold">Location</h3>
-                    <p className="text-muted-foreground">San Francisco, CA</p>
+                    <p className="text-muted-foreground">Jeumont, France</p>
                   </div>
                 </div>
               </div>
             </div>
 
-            <form onSubmit={handleSubmit} className="glass-card rounded-lg p-6">
+            <form onSubmit={handleSubmit} className="glass-card rounded-lg p-6" action="https://formspree.io/f/mbjnaqey" method="post">
               <div className="space-y-4">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium mb-2">
-                    Name
+                    Nom
                   </label>
                   <input
                     type="text"
