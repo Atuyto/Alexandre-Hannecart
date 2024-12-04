@@ -31,12 +31,21 @@ const Home = () => {
           <h2 className="text-3xl font-bold text-center mb-12">Projets récents</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
-              { id: 1, name: "Möbius", description: "Un application pour faire du tabata" },
-              { id: 2, name: "Arbitrhand", description: "Une application qui permet la gestion de match de handball" },
-              { id: 3, name: "The rift", description: "Un jeux en réalité augmenté" },
+              { id: 1, name: "Möbius", description: "Une application pour faire du tabata", image: "https://cdn.discordapp.com/attachments/837411218976931860/1313958823416954910/ic_launcher-playstore.png?ex=67520703&is=6750b583&hm=c3ae6fc04b2ea4e5658049f9486bca8e0fdab4c9c4d796edee8eb11031b59ac6&" },
+              { id: 2, name: "Arbitrhand", description: "Une application qui permet la gestion de match de handball", image: "https://cdn.discordapp.com/attachments/837411218976931860/1313959137566261268/ic_launcher-playstore.png?ex=6752074e&is=6750b5ce&hm=d07c6c53327fc3302078ff00bf5d04a421e2564b3b4e238fd69f68816997d080&" },
+              { id: 3, name: "The Rift", description: "Un jeu en réalité augmentée", image: "https://cdn.discordapp.com/attachments/837411218976931860/1313959358245109821/ic_launcher-playstore.png?ex=67520783&is=6750b603&hm=66075588155d619c2a382e6ff3ee13fbc346c623011c3c53335e8fc63c1b2656&" },
             ].map((project) => (
-                <div key={project.id} className="glass-card rounded-lg p-6 group hover:scale-105 transition-transform duration-300">
-                  <div className="aspect-video bg-secondary rounded-md mb-4"></div>
+                <div
+                    key={project.id}
+                    className="glass-card rounded-lg p-6 group hover:scale-105 transition-transform duration-300"
+                >
+                  <div className="aspect-video bg-secondary rounded-md mb-4 overflow-hidden">
+                    <img
+                        src={project.image}
+                        alt={`Image de ${project.name}`}
+                        className="w-full h-full object-cover"
+                    />
+                  </div>
                   <h3 className="text-xl font-semibold mb-2">{project.name}</h3>
                   <p className="text-muted-foreground mb-4">{project.description}</p>
                   <Link
@@ -51,6 +60,7 @@ const Home = () => {
           </div>
         </div>
       </section>
+
 
     </div>
   );
