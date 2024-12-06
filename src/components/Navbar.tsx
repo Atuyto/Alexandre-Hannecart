@@ -15,13 +15,12 @@ const Navbar = () => {
           Hannecart Alexandre
         </Link>
 
-        {/* Burger Icon */}
+        {/* Burger Icon (Visible uniquement en mobile) */}
         <button
           className="text-foreground md:hidden"
           onClick={() => setIsOpen(!isOpen)}
           aria-label="Toggle menu"
         >
-          {/* Icône burger */}
           <svg
             className="w-6 h-6"
             fill="none"
@@ -38,16 +37,16 @@ const Navbar = () => {
           </svg>
         </button>
 
-        {/* Links */}
+        {/* Menu Links */}
         <div
-          className={`flex flex-col md:flex-row gap-4 md:gap-8 items-center md:items-center absolute md:static top-16 left-0 right-0 bg-background md:bg-transparent border-b md:border-none border-border p-4 md:p-0 transition-all duration-300 ${
+          className={`absolute md:static top-16 left-0 right-0 bg-background md:bg-transparent border-b md:border-none border-border p-4 md:p-0 md:flex md:items-center md:gap-8 ${
             isOpen ? "block" : "hidden"
           }`}
         >
           <Link
             to="/"
             className={`nav-link ${isActive("/") ? "text-foreground" : ""}`}
-            onClick={() => setIsOpen(false)} // Ferme le menu après un clic
+            onClick={() => setIsOpen(false)}
           >
             Accueil
           </Link>
