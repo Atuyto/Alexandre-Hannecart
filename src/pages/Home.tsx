@@ -26,11 +26,11 @@ const projects = [
     id: 3,
     name: "MakeU",
     Shortdescription: "Un jeu en réalité augmentée",
-    image: "./Arbitrhand/logo.svg",
+    image: "./MakeU/logo.svg",
     Description: "Make-U est un projet personnel, une application conçue pour créer et suivre des programmes d'entraînement. Cette application offre une multitude de fonctionnalités, notamment le suivi des séances de musculation, le suivi des caractéristiques physiques de l'utilisateur, ainsi qu'un calendrier intégré avec des séances prévues pour la semaine, accompagné de rappels automatiques. Dans un futur proche, Make-U inclura également un système communautaire où les utilisateurs pourront partager des astuces sportives, des actualités et d'autres contenus pertinents pour enrichir l'expérience de fitness de chacun. ",
     objective: "L'objectif principal de Make-U est de proposer une interface simple permettant à l'utilisateur d'avoir immédiatement un suivi clair de ses performances ainsi que de sa prochaine séance prévue. Cette application vise à offrir une expérience intuitive et efficace pour suivre les progrès de l'utilisateur et planifier ses entraînements en toute facilité. Par le biais de ce projet, j'ai pu approfondir ma compréhension et ma pratique du modèle MVC (Modèle-Vue-Contrôleur), ce qui a considérablement renforcé mes compétences en développement front-end. Make-U représente donc une opportunité essentielle pour perfectionner mes capacités dans ce domaine. ",
     details: "Cette application est entièrement développée en Java. Pour implémenter les différentes fonctionnalités, j'ai mis en place un serveur Spring Boot. Ce serveur me permet de stocker les informations des utilisateurs ainsi que toutes les données nécessaires pour chaque utilisateur, y compris les articles qu'ils publient ",
-    carouselImages: ["./Arbitrhand/home.png", "./Arbitrhand/Connection.png", "./Arbitrhand/fyp.png", "./Arbitrhand/Seance.png", "./Arbitrhand/Cqlendqr.png"],
+    carouselImages: ["./MakeU/home.png", "./MakeU/Connection.png", "./MakeU/fyp.png", "./MakeU/Seance.png", "./MakeU/Calendar.png"],
   },
 ];
 
