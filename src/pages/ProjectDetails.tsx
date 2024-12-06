@@ -1,5 +1,36 @@
 import { useLocation, useNavigate } from "react-router-dom";
 
+
+const renderCarouselItem = (item) => {
+    // Vérifiez si l'élément est une vidéo YouTube
+    const isYoutubeVideo = item.includes("youtube.com");
+
+    if (isYoutubeVideo) {
+        const videoId = item.split("v=")[1]?.split("&")[0]; // Extraire l'ID de la vidéo
+        return (
+            <iframe
+                key={item}
+                width="100%"
+                height="100%"
+                src={`https://www.youtube.com/embed/${videoId}`}
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                title="YouTube video"
+            ></iframe>
+        );
+    } else {
+        return (
+            <img
+                key={item}
+                src={item}
+                alt="Carousel Item"
+                className="w-full h-full object-cover"
+            />
+        );
+    }
+};
+
 function ProjectDetails() {
     const location = useLocation();
     const navigate = useNavigate();
@@ -21,11 +52,7 @@ function ProjectDetails() {
                 {/* Section 1: Description and Image */}
                 <div className="flex flex-col md:flex-row items-center gap-8">
                     <div className="w-full md:w-1/2 glass-card p-4 rounded-xl">
-                        <img
-                            src={project.carouselImages[1]}
-                            alt={project.name}
-                            className="w-full h-[300px] object-contain rounded-lg"
-                        />
+                        renderCarouselItem(project.carouselImages[1])
                     </div>
                     <div className="w-full md:w-1/2 glass-card p-6 rounded-xl">
                         <p className="text-lg leading-relaxed">{project.Description}</p>
@@ -44,11 +71,7 @@ function ProjectDetails() {
                         </p>
                     </div>
                     <div className="w-full md:w-1/2 glass-card p-4 rounded-xl">
-                        <img
-                            src={project.carouselImages[2]}
-                            alt={`${project.name} details`}
-                            className="w-full h-[300px] object-contain rounded-lg"
-                        />
+                        renderCarouselItem(project.carouselImages[2])
                     </div>
                 </div>
 
@@ -56,15 +79,7 @@ function ProjectDetails() {
                 <div className="space-y-6">
                     <h2 className="text-2xl font-bold text-primary">Gallery</h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {project.carouselImages.map((image, index) => (
-                            <div key={index} className="glass-card p-4 rounded-xl">
-                                <img
-                                    src={image}
-                                    alt={`Gallery ${index + 1}`}
-                                    className="w-full h-[250px] object-contain rounded-lg"
-                                />
-                            </div>
-                        ))}
+                        {project.carouselImages.map((item) => renderCarouselItem(item))}
                     </div>
                 </div>
 

@@ -16,10 +16,10 @@ const Navbar = () => {
             Accueil
           </Link>
           <Link to="/projects" className={`nav-link ${isActive("/Projet") ? "text-foreground" : ""}`}>
-            Projects
+            Projets
           </Link>
           <Link to="/about" className={`nav-link ${isActive("/A propos") ? "text-foreground" : ""}`}>
-            About
+            A propos
           </Link>
           <Link to="/contact" className={`nav-link ${isActive("/contact") ? "text-foreground" : ""}`}>
             Contact
