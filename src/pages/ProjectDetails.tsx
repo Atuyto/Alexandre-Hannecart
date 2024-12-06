@@ -94,7 +94,11 @@ function ProjectDetails() {
                         ))}
                     </div>
                 </div>
-
+                <div className="text-center pt-8">
+                    {project.DesignBy !== "" && (
+                        <a href={project.DesignByURL}>{project.DesignBy}</a>
+                    )}
+                </div>
                 <div className="text-center pt-8">
                     <button
                         onClick={() => navigate(-1)}

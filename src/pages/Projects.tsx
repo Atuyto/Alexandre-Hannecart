@@ -16,6 +16,8 @@ const Projects = () => {
             carouselImages: ["/Alexandre-Hannecart/Mobius/home.png", "/Alexandre-Hannecart/Mobius/Ready.png", "/Alexandre-Hannecart/Mobius/GO.png", "/Alexandre-Hannecart/Mobius/Pause.png", "/Alexandre-Hannecart/Mobius/Cycle.png"],
             category: "Mobile",
             date: "2024",
+            DesignByURL: "https://antoine-carrere.fr/",
+            DesignBy: "Design réalisé par Antoine Carrere"
         },
         {
             id: 2,
@@ -28,6 +30,8 @@ const Projects = () => {
             carouselImages: ["/Alexandre-Hannecart/Arbitrhand/Home.png", "/Alexandre-Hannecart/Arbitrhand/Loading.png", "/Alexandre-Hannecart/Arbitrhand/horizontal.png"],
             category: "Mobile",
             date: "2023 - 2024",
+            DesignByURL: "https://antoine-carrere.fr/",
+            DesignBy: "Design réalisé par Antoine Carrere"
         },
         {
             id: 3,
@@ -40,6 +44,8 @@ const Projects = () => {
             carouselImages: ["/Alexandre-Hannecart/MakeU/home.png", "/Alexandre-Hannecart/MakeU/Connection.png", "/Alexandre-Hannecart/MakeU/fyp.png", "/Alexandre-Hannecart/MakeU/Seance.png", "./MakeU/Calendar.png"],
             category: "Mobile",
             date: "2020 - 2024",
+            DesignByURL: "https://antoine-carrere.fr/",
+            DesignBy: "Design réalisé par Antoine Carrere"
         },
         {
             id: 4,
@@ -52,6 +58,8 @@ const Projects = () => {
             carouselImages: ["https://www.youtube.com/watch?v=pW262cIVAPI", "https://www.youtube.com/watch?v=reIQdYcaWUI"],
             category: "Jeux",
             date: "2024",
+            DesignByURL: "https://antoine-carrere.fr/",
+            DesignBy: "Design réalisé par Antoine Carrere"
         },
       {
         id: 5,
@@ -64,6 +72,8 @@ const Projects = () => {
         carouselImages: ["/Alexandre-Hannecart/NotePad/home.png", "/Alexandre-Hannecart/NotePad/favorite.png", "/Alexandre-Hannecart/NotePad/note.png"],
         category: "Mobile",
         date: "2023",
+        DesignByURL: "",
+        DesignBy: ""
       },
       {
         id: 6,
@@ -76,6 +86,8 @@ const Projects = () => {
         carouselImages: ["/Alexandre-Hannecart/AMSTP/jeux.png", "/Alexandre-Hannecart/AMSTP/plateau.png", "/Alexandre-Hannecart/AMSTP/parametre.png"],
         category: "Jeux",
         date: "2022",
+        DesignByURL: "",
+        DesignBy: ""
       },
       {
         id: 7,
@@ -88,6 +100,8 @@ const Projects = () => {
         carouselImages: ["/Alexandre-Hannecart/MasterMind/jeux.png", "/Alexandre-Hannecart/MasterMind/plateauxRempli.png", "/Alexandre-Hannecart/MasterMind/menu.png"],
         category: "Jeux",
         date: "2022",
+        DesignByURL: "",
+        DesignBy: ""
       },
     ];
 
