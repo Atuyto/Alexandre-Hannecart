@@ -25,7 +25,7 @@ const Contact = () => {
     <div className="page-transition pt-24">
       <div className="container px-6">
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-4xl font-bold mb-12">Contacter moi</h1>
+          <h1 className="text-4xl font-bold mb-12">Contactez moi</h1>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             <div>
