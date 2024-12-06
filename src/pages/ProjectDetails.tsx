@@ -30,11 +30,11 @@ const renderCarouselItem = (item: string) => {
         );
     } else {
         return (
-            <div className="w-full h-[300px] md:h-[400px] rounded-lg overflow-hidden flex items-center justify-center bg-secondary/30">
+            <div className="w-full h-[300px] md:h-[400px] rounded-lg overflow-hidden flex items-center justify-center bg-secondary/30 group">
                 <img
                     src={item}
                     alt="Project media"
-                    className="max-w-full max-h-full object-contain"
+                    className="max-w-full max-h-full object-contain transition-transform duration-300 group-hover:scale-110"
                 />
             </div>
         );

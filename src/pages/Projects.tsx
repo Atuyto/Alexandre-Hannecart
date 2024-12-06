@@ -88,11 +88,11 @@ const Projects = () => {
                                     key={project.id}
                                     className="glass-card rounded-lg p-6 group hover:scale-105 transition-transform duration-300"
                                 >
-                                    <div className="aspect-video bg-secondary rounded-md mb-4 overflow-hidden flex items-center justify-center">
+                                    <div className="aspect-video bg-secondary rounded-md mb-4 overflow-hidden flex items-center justify-center relative group">
                                         <img
                                             src={project.image}
                                             alt={`Image de ${project.name}`}
-                                            className="w-full h-full object-contain"
+                                            className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-110"
                                         />
                                     </div>
                                     <h3 className="text-xl font-semibold mb-2">{project.name}</h3>
