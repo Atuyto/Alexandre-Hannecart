@@ -15,7 +15,7 @@ const Projects = () => {
       objective: "L'objectif de ce projet est de proposer un outil simple et efficace pour gérer vos séances d'entraînement, en particulier celles basées sur le protocole Tabata. Cette application intuitive offre une interface conviviale qui permet de créer, configurer et suivre des cycles de temps répétitifs. Que vous soyez un sportif débutant ou confirmé, elle facilite la gestion de vos entraînements en automatisant le minutage des sessions actives et des périodes de repos. Grâce à sa simplicité d'utilisation, elle s'adapte à vos besoins et vous aide à rester concentré sur vos performances sans avoir à vous soucier des minutages manuels.",
       details: "Möbius a été conçue spécifiquement pour Android en utilisant le langage Java. Cette application intègre des fonctionnalités avancées de gestion du temps, idéales pour automatiser les cycles d'entraînement. Elle exploite également l'enchaînement fluide de fragments pour offrir une expérience utilisateur optimale et bien structurée. Grâce à cette architecture moderne, Möbius garantit une navigation intuitive entre les différentes sections de l'application, tout en assurant une transition rapide et sans accroc. Ce choix technologique permet de répondre efficacement aux besoins des utilisateurs, qu'il s'agisse de configurer des séances ou de suivre leur progression.",
       carouselImages: ["/Alexandre-Hannecart/Mobius/home.png", "/Alexandre-Hannecart/Mobius/Ready.png", "/Alexandre-Hannecart/Mobius/GO.png", "/Alexandre-Hannecart/Mobius/Pause.png", "/Alexandre-Hannecart/Mobius/Cycle.png"],
-      category: "Mobile",
+      category: "Personal",
     },
     {
       id: 2,
@@ -26,7 +26,7 @@ const Projects = () => {
       objective: "Notre objectif principal était d'offrir une personnalisation complète de la configuration des matchs à travers l'application. Grâce à ce projet, j'ai pu réaliser un travail pour un client dans des conditions optimales. Cette expérience m'a permis de développer mes compétences en front-end, en relevant de nombreux défis, notamment celui de l'affichage dynamique des pénalités. De plus, j'ai acquis une compréhension approfondie de l'architecture MVC (Modèle-Vue-Contrôleur), qui a été cruciale pour le développement de l'application. Pour garantir des mises à jour constantes et éviter toute régression de l'application, j'ai intégré des tests JUnit dans le processus de développement, assurant ainsi la qualité et la fiabilité du produit final. ",
       details: "Arbitrhand intègre des fonctionnalités avancées pour le suivi des joueurs et la gestion des sanctions.",
       carouselImages: ["/Alexandre-Hannecart/Arbitrhand/Home.png", "/Alexandre-Hannecart/Arbitrhand/Loading.png", "/Alexandre-Hannecart/Arbitrhand/horizontal.png"],
-      category: "Mobile",
+      category: "Work",
     },
     {
       id: 3,
@@ -37,69 +37,71 @@ const Projects = () => {
       objective: "L'objectif principal de Make-U est de proposer une interface simple permettant à l'utilisateur d'avoir immédiatement un suivi clair de ses performances ainsi que de sa prochaine séance prévue. Cette application vise à offrir une expérience intuitive et efficace pour suivre les progrès de l'utilisateur et planifier ses entraînements en toute facilité. Par le biais de ce projet, j'ai pu approfondir ma compréhension et ma pratique du modèle MVC (Modèle-Vue-Contrôleur), ce qui a considérablement renforcé mes compétences en développement front-end. Make-U représente donc une opportunité essentielle pour perfectionner mes capacités dans ce domaine. ",
       details: "Cette application est entièrement développée en Java. Pour implémenter les différentes fonctionnalités, j'ai mis en place un serveur Spring Boot. Ce serveur me permet de stocker les informations des utilisateurs ainsi que toutes les données nécessaires pour chaque utilisateur, y compris les articles qu'ils publient ",
       carouselImages: ["/Alexandre-Hannecart/MakeU/home.png", "/Alexandre-Hannecart/MakeU/Connection.png", "/Alexandre-Hannecart/MakeU/fyp.png", "/Alexandre-Hannecart/MakeU/Seance.png", "./MakeU/Calendar.png"],
-      category: "Mobile",
+      category: "Personal",
     },
   ];
 
   // Filtrer les projets selon la catégorie
   const filteredProjects =
-      filter === "all"
-          ? projects
-          : projects.filter((project) => project.category.toLowerCase() === filter);
+    filter === "all"
+      ? projects
+      : projects.filter((project) => project.category.toLowerCase() === filter.toLowerCase());
 
   return (
-      <div className="page-transition pt-24">
-        <div className="container px-6">
-          <h1 className="text-4xl font-bold mb-12">My Projects</h1>
+    <div className="page-transition pt-24">
+      <div className="container px-6">
+        <h1 className="text-4xl font-bold mb-12">My Projects</h1>
 
-          <div className="flex gap-4 mb-8">
-            {["all", "Mobile", "Web"].map((category) => (
-                <button
-                    key={category}
-                    onClick={() => setFilter(category)}
-                    className={`px-4 py-2 rounded-full text-sm ${
-                        filter === category
-                            ? "bg-primary text-primary-foreground"
-                            : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
-                    } transition-colors`}
-                >
-                  {category.charAt(0).toUpperCase() + category.slice(1)}
-                </button>
-            ))}
-          </div>
-
-          {/* Affichage des projets filtrés */}
-          <section className="py-20">
-            <div className="container px-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {filteredProjects.map((project) => (
-                    <div
-                        key={project.id}
-                        className="glass-card rounded-lg p-6 group hover:scale-105 transition-transform duration-300"
-                    >
-                      <div className="aspect-video bg-secondary rounded-md mb-4 overflow-hidden">
-                        <img
-                            src={project.image}
-                            alt={`Image de ${project.name}`}
-                            className="w-full h-full object-cover"
-                        />
-                      </div>
-                      <h3 className="text-xl font-semibold mb-2">{project.name}</h3>
-                      <p className="text-muted-foreground mb-4">{project.Shortdescription}</p>
-                      <Link
-                          to="/ProjectDetails"
-                          state={project} // Passe toutes les données ici
-                          className="text-primary hover:text-primary/80 transition-colors inline-flex items-center gap-2"
-                      >
-                        En savoir plus
-                      </Link>
-                    </div>
-                ))}
-              </div>
-            </div>
-          </section>
+        <div className="flex gap-4 mb-8">
+          {["all", "Personal", "Work"].map((category) => (
+            <button
+              key={category}
+              onClick={() => setFilter(category.toLowerCase())}
+              className={`px-4 py-2 rounded-full text-sm ${
+                filter === category.toLowerCase()
+                  ? "bg-primary text-primary-foreground"
+                  : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
+              } transition-colors`}
+            >
+              {category.charAt(0).toUpperCase() + category.slice(1)}
+            </button>
+          ))}
         </div>
+
+        <section className="py-20">
+          <div className="container px-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {filteredProjects.map((project) => (
+                <div
+                  key={project.id}
+                  className="glass-card rounded-lg p-6 group hover:scale-105 transition-transform duration-300"
+                >
+                  <div className="aspect-video bg-secondary rounded-md mb-4 overflow-hidden">
+                    <img
+                      src={project.image}
+                      alt={`Image de ${project.name}`}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <h3 className="text-xl font-semibold mb-2">{project.name}</h3>
+                  <p className="text-muted-foreground mb-4">{project.Shortdescription}</p>
+                  <div className="flex justify-between items-center">
+                    <Link
+                      to="/ProjectDetails"
+                      state={project}
+                      className="text-primary hover:text-primary/80 transition-colors inline-flex items-center gap-2"
+                    >
+                      En savoir plus
+                    </Link>
+                    <span className="text-sm text-muted-foreground">{project.category}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
       </div>
+    </div>
   );
 };
 
