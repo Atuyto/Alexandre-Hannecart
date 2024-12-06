@@ -9,8 +9,11 @@ const Contact = () => {
     message: "",
   });
 
+
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault(); // Pour empêcher le rechargement de la page
+    toast.success("Message sent successfully!");
+    setFormData({ name: "", email: "", message: "" });
     const form = e.target;
     const formData = new FormData(form);
     fetch(form.action, {
@@ -28,7 +31,6 @@ const Contact = () => {
           alert('Erreur lors de l\'envoi du message.');
         });
   };
-
   return (
     <div className="page-transition pt-24">
       <div className="container px-6">
