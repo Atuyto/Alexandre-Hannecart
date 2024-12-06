@@ -46,13 +46,20 @@ const Projects = () => {
             Description: "Créer un jeu en réalité augmentée (RA) entre un Oculus Quest (casque VR) et un appareil Android (appareil mobile) implique plusieurs défis techniques et logistiques. Voici un aperçu du processus et des étapes clés pour y parvenir, notamment l'intégration de la réalité augmentée et la communication en temps réel entre les deux plateformes.",
             objective: "L'objectif était de créer un jeu collaboratif en respectant plusieurs contraintes, dont l'utilisation de deux technologies différentes. Nous avons opté pour la réalité augmentée et les téléphones mobiles. Le principe du jeu était que le joueur, équipé du casque, résolve diverses énigmes, tandis que le téléphone recevait toutes les informations nécessaires pour aider le joueur du casque à résoudre les défis.",
             details: "Dans ce projet, nous avons dû développer une API REST et un WebSocket en utilisant le framework Spring. Du côté Android, nous avons utilisé le langage Java accompagné des bibliothèques Android. Pour la création du jeu en réalité augmentée, nous avons opté pour Unity.",
-            carouselImages: [
-                "/Alexandre-Hannecart/TheRift/logo.jpg",
-                "https://www.youtube.com/watch?v=pW262cIVAPI",
-                "https://www.youtube.com/watch?v=reIQdYcaWUI"
-            ],
+            carouselImages: ["https://www.youtube.com/watch?v=pW262cIVAPI", "https://www.youtube.com/watch?v=reIQdYcaWUI"],
             category: "Jeux",
         },
+      {
+        id: 5,
+        name: "NotePad--",
+        Shortdescription: "Une application pour la gestion de notes.",
+        image: "/Alexandre-Hannecart/NotePad/logo.png",
+        Description: "Une application permettant de prendre des notes rapidement, avec plusieurs fonctionnalités telles que l'enregistrement, la modification, l'ajout aux favoris, la recherche et le tri des notes. Elle offre également la possibilité d'enregistrer les notes localement et de les supprimer.",
+        objective: "Cette application de prise de notes a été développée dans le cadre d'un projet d'étude, réalisé en 28 heures de travail. Son objectif est d'offrir une solution simple et rapide pour enregistrer, modifier, organiser et rechercher des notes. Elle permet également de gérer les notes avec des fonctionnalités comme l'ajout aux favoris, le tri et la possibilité d'enregistrer localement ou de supprimer les notes.",
+        details: "Le développement de cette application a impliqué l'utilisation de plusieurs technologies pour offrir une expérience fluide et fonctionnelle. Nous avons utilisé Room Database pour la gestion locale des notes, permettant un stockage efficace et sécurisé des données sur l'appareil. L'application est construite avec des fragments Android, offrant une interface modulaire et réactive, facilitant la gestion des différentes vues, comme la création et la modification des notes. Le développement a été réalisé en Java, avec des bibliothèques Android, garantissant ainsi une compatibilité optimale avec les appareils et une gestion simplifiée de l'interface utilisateur. Ces choix techniques ont permis de créer une application performante et intuitive dans un délai de 28 heures de travail.",
+        carouselImages: ["/Alexandre-Hannecart/NotePad/home.png", "/Alexandre-Hannecart/NotePad/favorite.png", "/Alexandre-Hannecart/NotePad/note.png"],
+        category: "Mobile",
+      },
     ];
 
     const filteredProjects = filter === "all"
@@ -104,7 +111,7 @@ const Projects = () => {
                                     >
                                         En savoir plus
                                     </Link>
-                                    <span className="text-sm text-muted-foreground">{project.category}</span>
+
                                 </div>
                             ))}
                         </div>
