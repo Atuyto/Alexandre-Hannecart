@@ -10,7 +10,7 @@ const About = () => {
               <div>
                 <div className="aspect-square bg-secondary rounded-lg">
                   <img
-                      src="/moi.png"
+                      src="/Alexandre-Hannecart/moi.png"
                       alt="photo"/>
                 </div>
               </div>
