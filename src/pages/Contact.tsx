@@ -9,10 +9,24 @@ const Contact = () => {
     message: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    toast.success("Message sent successfully!");
-    setFormData({ name: "", email: "", message: "" });
+    const form = e.target;
+    const formData = new FormData(form);
+    fetch(form.action, {
+      method: form.method,
+      body: formData,
+    })
+        .then((response) => {
+          if (response.ok) {
+            alert('Message envoyé avec succès !');
+          } else {
+            alert('Erreur lors de l\'envoi du message.');
+          }
+        })
+        .catch((error) => {
+          alert('Erreur lors de l\'envoi du message.');
+        });
   };
 
   return (
