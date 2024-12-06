@@ -101,7 +101,7 @@ const Projects = () => {
                 <h1 className="text-4xl font-bold mb-12">Mes projets</h1>
 
                 <div className="flex gap-4 mb-8">
-                    {["all", "Mobile", "Divers", "Jeux"].map((category) => (
+                    {["all", "Mobile", "Jeux"].map((category) => (
                         <button
                             key={category}
                             onClick={() => setFilter(category.toLowerCase())}
