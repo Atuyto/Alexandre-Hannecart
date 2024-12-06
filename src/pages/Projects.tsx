@@ -60,6 +60,17 @@ const Projects = () => {
         carouselImages: ["/Alexandre-Hannecart/NotePad/home.png", "/Alexandre-Hannecart/NotePad/favorite.png", "/Alexandre-Hannecart/NotePad/note.png"],
         category: "Mobile",
       },
+      {
+        id: 6,
+        name: "Attrape moi si tu peux",
+        Shortdescription: "Le jeu met en scène un mouton et un loup, où l'objectif principal est de survivre le plus longtemps possible",
+        image: "/Alexandre-Hannecart/AMSTP/logo.png",
+        Description: "Attrape-moi si tu peux est un jeu que j'ai développé avec une équipe de deux personnes. Ce projet consistait à créer un jeu où un loup et un mouton se baladent dans un labyrinthe. L'objectif principal était de permettre au mouton de survivre le plus longtemps possible dans le labyrinthe sans se faire attraper par le loup. Pour rendre le jeu plus dynamique et captivant, nous avons intégré des éléments de gameplay tels que des malus et des bonus dispersés dans le labyrinthe, ajoutant ainsi une dimension stratégique et excitante à l'expérience de jeu. ",
+        objective: "Notre objectif principal était de concevoir une interface simple permettant la génération, la modification et la simulation de labyrinthes, ainsi que l'ajout d'animaux tels que le loup et le mouton. Ce projet nous a offert une opportunité précieuse de nous initier au modèle MVC (Modèle-Vue-Contrôleur), une architecture de conception largement utilisée dans le développement logiciel. Grâce à cette expérience, nous avons pu comprendre et appliquer les principes fondamentaux du MVC pour organiser efficacement le code et rendre notre application plus modulaire et facile à maintenir. ",
+        details: "Ce projet a été entièrement développé en Java, avec l'utilisation de JavaFX pour la partie Front-end. Il nous a offert une opportunité unique de développer nos compétences dans l'implémentation de fonctionnalités complexes. Par exemple, nous avons intégré avec succès des algorithmes avancés tels que l'algorithme de Dijkstra et l'algorithme A* pour la résolution efficace de labyrinthes. Cette expérience nous a permis de maîtriser des concepts algorithmiques puissants et de les appliquer de manière concrète dans le développement de notre application. ",
+        carouselImages: ["/Alexandre-Hannecart/AMSTP/jeux.png", "/Alexandre-Hannecart/AMSTP/plateau.png", "/Alexandre-Hannecart/AMSTP/parametre.png"],
+        category: "Jeux",
+      },
     ];
 
     const filteredProjects = filter === "all"
@@ -72,7 +83,7 @@ const Projects = () => {
                 <h1 className="text-4xl font-bold mb-12">Mes projets</h1>
 
                 <div className="flex gap-4 mb-8">
-                    {["all", "Mobile", "Web", "Jeux"].map((category) => (
+                    {["all", "Mobile", "Divers", "Jeux"].map((category) => (
                         <button
                             key={category}
                             onClick={() => setFilter(category.toLowerCase())}
