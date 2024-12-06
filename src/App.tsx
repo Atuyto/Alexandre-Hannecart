@@ -22,7 +22,7 @@ const App = () => (
         <div className="min-h-screen flex flex-col">
           <Navbar />
           <main className="flex-grow">
-            <Routes>
+            <Routes basename="/Alexandre-Hannecart">
               <Route path="/" element={<Home />} />
               <Route path="/projects" element={<Projects />} />
               <Route path="/about" element={<About />} />
