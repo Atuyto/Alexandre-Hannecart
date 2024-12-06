@@ -47,7 +47,7 @@ const Projects = () => {
       Description: "Créer un jeu en réalité augmentée (RA) entre un Oculus Quest (casque VR) et un appareil Android (appareil mobile) implique plusieurs défis techniques et logistiques. Voici un aperçu du processus et des étapes clés pour y parvenir, notamment l'intégration de la réalité augmentée et la communication en temps réel entre les deux plateformes.",
       objective: "L'objectif était de créer un jeu collaboratif en respectant plusieurs contraintes, dont l'utilisation de deux technologies différentes. Nous avons opté pour la réalité augmentée et les téléphones mobiles. Le principe du jeu était que le joueur, équipé du casque, résolve diverses énigmes, tandis que le téléphone recevait toutes les informations nécessaires pour aider le joueur du casque à résoudre les défis.",
       details: "Dans ce projet, nous avons dû développer une API REST et un WebSocket en utilisant le framework Spring. Du côté Android, nous avons utilisé le langage Java accompagné des bibliothèques Android. Pour la création du jeu en réalité augmentée, nous avons opté pour Unity.",
-      carouselImages: ["https://www.youtube.com/watch?v=pW262cIVAPI&list=PL4kFluePSTPkX1Y6R_MVpKz1oGdmHIYiY&index=8&ab_channel=Atuyto", "/Alexandre-Hannecart/MakeU/Connection.png", "https://www.youtube.com/watch?v=reIQdYcaWUI&list=PL4kFluePSTPkX1Y6R_MVpKz1oGdmHIYiY&index=9&ab_channel=Atuyto"],
+      carouselImages: ["https://www.youtube.com/watch?v=pW262cIVAPI&list=PL4kFluePSTPkX1Y6R_MVpKz1oGdmHIYiY&index=8&ab_channel=Atuyto", "https://www.youtube.com/watch?v=reIQdYcaWUI&list=PL4kFluePSTPkX1Y6R_MVpKz1oGdmHIYiY&index=9&ab_channel=Atuyto"],
       category: "Jeux",
     },
   ];

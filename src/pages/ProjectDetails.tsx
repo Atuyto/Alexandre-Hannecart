@@ -52,7 +52,7 @@ function ProjectDetails() {
                 {/* Section 1: Description and Image */}
                 <div className="flex flex-col md:flex-row items-center gap-8">
                     <div className="w-full md:w-1/2 glass-card p-4 rounded-xl">
-                        renderCarouselItem(project.carouselImages[1])
+                        {renderCarouselItem(project.carouselImages[1])}
                     </div>
                     <div className="w-full md:w-1/2 glass-card p-6 rounded-xl">
                         <p className="text-lg leading-relaxed">{project.Description}</p>
@@ -71,7 +71,7 @@ function ProjectDetails() {
                         </p>
                     </div>
                     <div className="w-full md:w-1/2 glass-card p-4 rounded-xl">
-                        renderCarouselItem(project.carouselImages[2])
+                        {renderCarouselItem(project.carouselImages[2])}
                     </div>
                 </div>
 
