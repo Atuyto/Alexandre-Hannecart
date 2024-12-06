@@ -12,17 +12,14 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault(); // Pour empêcher le rechargement de la page
-
+    toast.success("Message sent successfully!");
+    setFormData({ name: "", email: "", message: "" });
     const form = e.target;
     const formData = new FormData(form);
     fetch(form.action, {
       method: form.method,
       body: formData,
-    })
-        .then((response) => {
-          toast.success("Message sent successfully!");
-          setFormData({ name: "", email: "", message: "" });
-        });
+    }).then((response) => {});
   };
   return (
     <div className="page-transition pt-24">
