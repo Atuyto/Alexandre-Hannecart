@@ -18,9 +18,11 @@ const Contact = () => {
     fetch(form.action, {
       method: form.method,
       body: formData,
-    }).then(r => (
-        toast.success("Message sent successfully!");
-        setFormData({ name: "", email: "", message: "" });
+    })
+        .then((response) => {
+          toast.success("Message sent successfully!");
+          setFormData({ name: "", email: "", message: "" });
+        });
   };
   return (
     <div className="page-transition pt-24">
