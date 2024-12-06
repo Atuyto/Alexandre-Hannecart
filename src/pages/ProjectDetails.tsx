@@ -1,6 +1,4 @@
 import { useLocation, useNavigate } from "react-router-dom";
-
-import { useLocation, useNavigate } from "react-router-dom";
 import { cn } from "@/lib/utils";
 
 const isYoutubeUrl = (url: string): boolean => {
@@ -26,17 +24,17 @@ const renderCarouselItem = (item: string) => {
                     src={`https://www.youtube.com/embed/${videoId}`}
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
-                    className="w-full h-full object-cover"
+                    className="w-full h-full"
                 ></iframe>
             </div>
         );
     } else {
         return (
-            <div className="w-full h-[300px] md:h-[400px] rounded-lg overflow-hidden">
+            <div className="w-full h-[300px] md:h-[400px] rounded-lg overflow-hidden flex items-center justify-center bg-secondary/30">
                 <img
                     src={item}
                     alt="Project media"
-                    className="w-full h-full object-cover"
+                    className="max-w-full max-h-full object-contain"
                 />
             </div>
         );
@@ -111,4 +109,3 @@ function ProjectDetails() {
 }
 
 export default ProjectDetails;
-
