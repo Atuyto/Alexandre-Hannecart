@@ -40,7 +40,7 @@ const Navbar = () => {
         {/* Menu Links */}
         <div
           className={`absolute md:static top-16 left-0 right-0 bg-background md:bg-transparent border-b md:border-none border-border p-4 md:p-0 md:flex md:items-center md:gap-8 ${
-            isOpen ? "block" : "hidden"
+            isOpen ? "flex flex-col gap-4" : "hidden"
           }`}
         >
           <Link
