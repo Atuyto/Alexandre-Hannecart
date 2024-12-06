@@ -105,7 +105,9 @@ function ProjectDetails() {
                 </div>
                 <div className="text-left pt-8">
                     {project.DesignBy !== "" && (
-                        <a href={project.DesignByURL}>{project.DesignBy}</a>
+                        <a href={project.DesignByURL}
+                           className="text-primary font-semibold hover:text-primary/80 hover:underline transition-all duration-300"
+                        >{project.DesignBy}</a>
                     )}
                 </div>
                 <div className="text-center pt-8">
