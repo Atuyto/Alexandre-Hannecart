@@ -8,7 +8,13 @@ const About = () => {
           <div className="glass-card rounded-lg p-8 mb-12">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
               <div>
-                <div className="aspect-square bg-secondary rounded-lg"></div>
+                <div className="aspect-square bg-secondary rounded-lg">
+                  <img
+                      src="/Alexandre-Hannecart/moi.png"
+                      alt="Project media"
+                      className="max-w-full max-h-full object-contain transition-transform duration-300 group-hover:scale-110"
+                  />
+                </div>
               </div>
               <div>
                 <h2 className="text-2xl font-semibold mb-4">Qui suis-je</h2>
