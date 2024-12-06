@@ -28,7 +28,7 @@ function ProjectDetails() {
                         />
                     </div>
                     <div className="w-full md:w-1/2 glass-card p-6 rounded-xl">
-                        <p className="text-lg leading-relaxed">{project.description}</p>
+                        <p className="text-lg leading-relaxed">{project.Description}</p>
                     </div>
                 </div>
 
@@ -36,7 +36,7 @@ function ProjectDetails() {
                 <div className="flex flex-col-reverse md:flex-row items-center gap-8">
                     <div className="w-full md:w-1/2 glass-card p-6 rounded-xl">
                         <p className="text-lg leading-relaxed">
-                            <span className="font-semibold text-primary">Objective: </span>
+                            <span className="font-semibold text-primary">Objectif: </span>
                             {project.objective}
                         </p>
                         <p className="text-lg leading-relaxed mt-4">
