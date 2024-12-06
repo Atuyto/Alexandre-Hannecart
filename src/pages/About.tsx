@@ -11,9 +11,7 @@ const About = () => {
                 <div className="aspect-square bg-secondary rounded-lg">
                   <img
                       src="/moi.png"
-                      alt="Project media"
-                      className="max-w-full max-h-full object-contain transition-transform duration-300 group-hover:scale-110"
-                  />
+                      alt="photo"/>
                 </div>
               </div>
               <div>
