@@ -71,6 +71,17 @@ const Projects = () => {
         carouselImages: ["/Alexandre-Hannecart/AMSTP/jeux.png", "/Alexandre-Hannecart/AMSTP/plateau.png", "/Alexandre-Hannecart/AMSTP/parametre.png"],
         category: "Jeux",
       },
+      {
+        id: 7,
+        name: "MasterMind",
+        Shortdescription: "Un jeu où l'ordinateur doit deviner une séquence de couleurs en un minimum d'essais.",
+        image: "/Alexandre-Hannecart/MasterMind/logo.png",
+        Description: "MasterMind est un projet demandé par l'IUT et réalisé en équipe. Le but de ce jeu était de proposer une combinaison de cinq couleurs, que l'ordinateur devait trouver en un minimum d'essais possibles. Ce projet nous a permis de mettre en pratique nos connaissances en programmation et en résolution de problèmes, tout en collaborant efficacement en équipe pour atteindre notre objectif commun. ",
+        objective: "Notre objectif était de simplifier l'interface graphique pour une utilisation intuitive. Au lancement de l'application, nous avons conçu un système permettant à l'utilisateur de saisir la combinaison de couleurs. Ce jeu nous a initiés aux bases du front-end en adoptant une approche minimaliste, privilégiant le moins de composants possible pour une expérience utilisateur fluide et efficace. ",
+        details: "Cette application a été réalisée en Python. Ce jeu nous a offert une occasion unique de nous initier à l'implémentation de fonctionnalités complexes et de comprendre la complexité de certains algorithmes. Par exemple, nous avons implémenté trois algorithmes différents pour résoudre le jeu, incluant un algorithme aléatoire, un naïf et un algorithme plus intelligent. Cette expérience nous a permis d'approfondir notre compréhension des algorithmes et de développer nos compétences en programmation. ",
+        carouselImages: ["/Alexandre-Hannecart/MasterMind/jeux.png", "/Alexandre-Hannecart/MasterMind/plateauxRempli.png", "/Alexandre-Hannecart/MasterMind/menu.png"],
+        category: "Jeux",
+      },
     ];
 
     const filteredProjects = filter === "all"
