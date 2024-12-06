@@ -6,11 +6,11 @@ const projects = [
     id: 1,
     name: "Möbius",
     Shortdescription: "Une application pour faire du tabata",
-    image: "https://cdn.discordapp.com/attachments/837411218976931860/1313958823416954910/ic_launcher-playstore.png?ex=67520703&is=6750b583&hm=c3ae6fc04b2ea4e5658049f9486bca8e0fdab4c9c4d796edee8eb11031b59ac6&",
+    image: "./public/Mobius/Mobius/logo.png",
     Description: "Möbius est un projet personnel que j'ai réalisé en collaboration avec un ami. Notre objectif était de concevoir une application mobile pratique et intuitive, spécialement pensée pour simplifier la gestion des arbitrages de temps lors de séances répétitives, comme celles utilisées dans les entraînements Tabata ou les exercices fractionnés",
     objective: "L'objectif de ce projet est de proposer un outil simple et efficace pour gérer vos séances d'entraînement, en particulier celles basées sur le protocole Tabata. Cette application intuitive offre une interface conviviale qui permet de créer, configurer et suivre des cycles de temps répétitifs. Que vous soyez un sportif débutant ou confirmé, elle facilite la gestion de vos entraînements en automatisant le minutage des sessions actives et des périodes de repos. Grâce à sa simplicité d'utilisation, elle s'adapte à vos besoins et vous aide à rester concentré sur vos performances sans avoir à vous soucier des minutages manuels.",
     details: "Möbius a été conçue spécifiquement pour Android en utilisant le langage Java. Cette application intègre des fonctionnalités avancées de gestion du temps, idéales pour automatiser les cycles d'entraînement. Elle exploite également l'enchaînement fluide de fragments pour offrir une expérience utilisateur optimale et bien structurée. Grâce à cette architecture moderne, Möbius garantit une navigation intuitive entre les différentes sections de l'application, tout en assurant une transition rapide et sans accroc. Ce choix technologique permet de répondre efficacement aux besoins des utilisateurs, qu'il s'agisse de configurer des séances ou de suivre leur progression.",
-    carouselImages: ["/Mobius/home.png", "/Mobius/Ready.png", "/Mobius/GO.png", "/Mobius/Pause.png", "/Mobius/Cycle.png"],
+    carouselImages: ["./public/Mobius/home.png", "./public/Mobius/Mobius/Ready.png", "./public/Mobius/Mobius/GO.png", "./public/Mobius/Mobius/Pause.png", "./public/Mobius/Mobius/Cycle.png"],
   },
   {
     id: 2,
