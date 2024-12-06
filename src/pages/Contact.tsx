@@ -68,12 +68,13 @@ const Contact = () => {
                     Nom
                   </label>
                   <input
-                    type="text"
-                    id="name"
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full px-4 py-2 rounded-md bg-secondary/50 border border-border focus:outline-none focus:ring-2 focus:ring-primary"
-                    required
+                      type="text"
+                      id="name"
+                      name="name"  // Important pour Formspree
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      className="w-full px-4 py-2 rounded-md bg-secondary/50 border border-border focus:outline-none focus:ring-2 focus:ring-primary"
+                      required
                   />
                 </div>
 
@@ -82,12 +83,13 @@ const Contact = () => {
                     Email
                   </label>
                   <input
-                    type="email"
-                    id="email"
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full px-4 py-2 rounded-md bg-secondary/50 border border-border focus:outline-none focus:ring-2 focus:ring-primary"
-                    required
+                      type="email"
+                      id="email"
+                      name="email"  // Important pour Formspree
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      className="w-full px-4 py-2 rounded-md bg-secondary/50 border border-border focus:outline-none focus:ring-2 focus:ring-primary"
+                      required
                   />
                 </div>
 
@@ -96,18 +98,19 @@ const Contact = () => {
                     Message
                   </label>
                   <textarea
-                    id="message"
-                    value={formData.message}
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    rows={5}
-                    className="w-full px-4 py-2 rounded-md bg-secondary/50 border border-border focus:outline-none focus:ring-2 focus:ring-primary"
-                    required
+                      id="message"
+                      name="message"  // Important pour Formspree
+                      value={formData.message}
+                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                      rows={5}
+                      className="w-full px-4 py-2 rounded-md bg-secondary/50 border border-border focus:outline-none focus:ring-2 focus:ring-primary"
+                      required
                   ></textarea>
                 </div>
 
                 <button
-                  type="submit"
-                  className="w-full bg-primary text-primary-foreground px-6 py-3 rounded-lg hover:bg-primary/90 transition-colors"
+                    type="submit"
+                    className="w-full bg-primary text-primary-foreground px-6 py-3 rounded-lg hover:bg-primary/90 transition-colors"
                 >
                   Send Message
                 </button>
