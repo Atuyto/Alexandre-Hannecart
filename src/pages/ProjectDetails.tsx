@@ -1,6 +1,14 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { cn } from "@/lib/utils";
 
+// Fonction pour diviser un texte à chaque point (".") et insérer un retour à la ligne
+const splitTextOnDot = (text: string) => {
+    return text.split('.').map((sentence, index) => {
+        // Si ce n'est pas le dernier élément, ajouter un retour à la ligne après chaque phrase
+        return sentence ? <p key={index}>{sentence.trim()}.</p> : null;
+    });
+};
+
 const isYoutubeUrl = (url: string): boolean => {
     return url.includes("youtube.com") || url.includes("youtu.be");
 };
@@ -64,7 +72,9 @@ function ProjectDetails() {
                             renderCarouselItem(project.carouselImages[0])}
                     </div>
                     <div className="w-full md:w-1/2 glass-card p-6 rounded-xl">
-                        <p className="text-lg leading-relaxed">{project.Description}</p>
+                        <div className="text-lg leading-relaxed">
+                            {splitTextOnDot(project.Description)}
+                        </div>
                     </div>
                 </div>
 
@@ -72,10 +82,10 @@ function ProjectDetails() {
                     <div className="w-full md:w-1/2 glass-card p-6 rounded-xl">
                         <p className="text-lg leading-relaxed">
                             <span className="font-semibold text-primary">Objectif: </span>
-                            {project.objective}
+                            {splitTextOnDot(project.objective)}
                         </p>
                         <p className="text-lg leading-relaxed mt-4">
-                            {project.details}
+                            {splitTextOnDot(project.details)}
                         </p>
                     </div>
                     <div className="w-full md:w-1/2 glass-card p-4 rounded-xl">

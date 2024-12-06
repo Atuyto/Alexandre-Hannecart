@@ -48,8 +48,9 @@ const Home = () => {
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-2xl md:text-4xl font-bold mb-6">
               Je suis Alexandre, un étudiant dévoué en informatique qui se passionne pour le développement d’applications.
+              <br />
               j’aime transformer les idées en réalités, une ligne de code à la fois.
-
+              <br /><br />
               Ensemble,<span className="text-primary"> façonnons l’avenir du numérique</span>
             </h1>
             <p className="text-xl text-muted-foreground mb-8">
