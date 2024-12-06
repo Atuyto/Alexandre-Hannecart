@@ -94,7 +94,7 @@ function ProjectDetails() {
                         ))}
                     </div>
                 </div>
-                <div className="text-center pt-8">
+                <div className="text-left pt-8">
                     {project.DesignBy !== "" && (
                         <a href={project.DesignByURL}>{project.DesignBy}</a>
                     )}
