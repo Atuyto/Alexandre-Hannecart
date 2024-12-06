@@ -4,8 +4,7 @@ import { cn } from "@/lib/utils";
 // Fonction pour diviser un texte à chaque point (".") et insérer un retour à la ligne
 const splitTextOnDot = (text: string) => {
     return text.split('.').map((sentence, index) => {
-        // Si ce n'est pas le dernier élément, ajouter un retour à la ligne après chaque phrase
-        return sentence ? <p key={index}>{sentence.trim()} <br/></p> : null;
+        return sentence ? <p key={index}>{sentence.trim()}. <br/></p> : null;
     });
 };
 
