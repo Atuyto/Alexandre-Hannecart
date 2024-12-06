@@ -3,14 +3,14 @@ import { cn } from "@/lib/utils";
 
 
 const splitTextOnDot = (text: string) => {
-    const sentences = text.split('.').filter(sentence => sentence.trim() !== '');
-    return sentences.map((sentence, index) => (
-        <React.Fragment key={index}>
-            <p>{sentence.trim()}.</p>
-            <br />
-        </React.Fragment>
-    ));
+    return text.split('.').map((sentence, index) => {
+        if (sentence.trim()) {
+            return <p key={index}>{sentence.trim()} <br /> </p>;
+        }
+        return null;
+    });
 };
+
 const isYoutubeUrl = (url: string): boolean => {
     return url.includes("youtube.com") || url.includes("youtu.be");
 };
