@@ -15,6 +15,7 @@ const Projects = () => {
             details: "Möbius a été conçue spécifiquement pour Android en utilisant le langage Java. Cette application intègre des fonctionnalités avancées de gestion du temps, idéales pour automatiser les cycles d'entraînement. Elle exploite également l'enchaînement fluide de fragments pour offrir une expérience utilisateur optimale et bien structurée. Grâce à cette architecture moderne, Möbius garantit une navigation intuitive entre les différentes sections de l'application, tout en assurant une transition rapide et sans accroc. Ce choix technologique permet de répondre efficacement aux besoins des utilisateurs, qu'il s'agisse de configurer des séances ou de suivre leur progression.",
             carouselImages: ["/Alexandre-Hannecart/Mobius/home.png", "/Alexandre-Hannecart/Mobius/Ready.png", "/Alexandre-Hannecart/Mobius/GO.png", "/Alexandre-Hannecart/Mobius/Pause.png", "/Alexandre-Hannecart/Mobius/Cycle.png"],
             category: "Mobile",
+            date: "2024",
         },
         {
             id: 2,
@@ -26,6 +27,7 @@ const Projects = () => {
             details: "Arbitrhand intègre des fonctionnalités avancées pour le suivi des joueurs et la gestion des sanctions.",
             carouselImages: ["/Alexandre-Hannecart/Arbitrhand/Home.png", "/Alexandre-Hannecart/Arbitrhand/Loading.png", "/Alexandre-Hannecart/Arbitrhand/horizontal.png"],
             category: "Mobile",
+            date: "2023 - 2024",
         },
         {
             id: 3,
@@ -37,6 +39,7 @@ const Projects = () => {
             details: "Cette application est entièrement développée en Java. Pour implémenter les différentes fonctionnalités, j'ai mis en place un serveur Spring Boot. Ce serveur me permet de stocker les informations des utilisateurs ainsi que toutes les données nécessaires pour chaque utilisateur, y compris les articles qu'ils publient ",
             carouselImages: ["/Alexandre-Hannecart/MakeU/home.png", "/Alexandre-Hannecart/MakeU/Connection.png", "/Alexandre-Hannecart/MakeU/fyp.png", "/Alexandre-Hannecart/MakeU/Seance.png", "./MakeU/Calendar.png"],
             category: "Mobile",
+            date: "2020 - 2024",
         },
         {
             id: 4,
@@ -48,6 +51,7 @@ const Projects = () => {
             details: "Dans ce projet, nous avons dû développer une API REST et un WebSocket en utilisant le framework Spring. Du côté Android, nous avons utilisé le langage Java accompagné des bibliothèques Android. Pour la création du jeu en réalité augmentée, nous avons opté pour Unity.",
             carouselImages: ["https://www.youtube.com/watch?v=pW262cIVAPI", "https://www.youtube.com/watch?v=reIQdYcaWUI"],
             category: "Jeux",
+            date: "2024",
         },
       {
         id: 5,
@@ -59,6 +63,7 @@ const Projects = () => {
         details: "Le développement de cette application a impliqué l'utilisation de plusieurs technologies pour offrir une expérience fluide et fonctionnelle. Nous avons utilisé Room Database pour la gestion locale des notes, permettant un stockage efficace et sécurisé des données sur l'appareil. L'application est construite avec des fragments Android, offrant une interface modulaire et réactive, facilitant la gestion des différentes vues, comme la création et la modification des notes. Le développement a été réalisé en Java, avec des bibliothèques Android, garantissant ainsi une compatibilité optimale avec les appareils et une gestion simplifiée de l'interface utilisateur. Ces choix techniques ont permis de créer une application performante et intuitive dans un délai de 28 heures de travail.",
         carouselImages: ["/Alexandre-Hannecart/NotePad/home.png", "/Alexandre-Hannecart/NotePad/favorite.png", "/Alexandre-Hannecart/NotePad/note.png"],
         category: "Mobile",
+        date: "2023",
       },
       {
         id: 6,
@@ -70,6 +75,7 @@ const Projects = () => {
         details: "Ce projet a été entièrement développé en Java, avec l'utilisation de JavaFX pour la partie Front-end. Il nous a offert une opportunité unique de développer nos compétences dans l'implémentation de fonctionnalités complexes. Par exemple, nous avons intégré avec succès des algorithmes avancés tels que l'algorithme de Dijkstra et l'algorithme A* pour la résolution efficace de labyrinthes. Cette expérience nous a permis de maîtriser des concepts algorithmiques puissants et de les appliquer de manière concrète dans le développement de notre application. ",
         carouselImages: ["/Alexandre-Hannecart/AMSTP/jeux.png", "/Alexandre-Hannecart/AMSTP/plateau.png", "/Alexandre-Hannecart/AMSTP/parametre.png"],
         category: "Jeux",
+        date: "2022",
       },
       {
         id: 7,
@@ -81,6 +87,7 @@ const Projects = () => {
         details: "Cette application a été réalisée en Python. Ce jeu nous a offert une occasion unique de nous initier à l'implémentation de fonctionnalités complexes et de comprendre la complexité de certains algorithmes. Par exemple, nous avons implémenté trois algorithmes différents pour résoudre le jeu, incluant un algorithme aléatoire, un naïf et un algorithme plus intelligent. Cette expérience nous a permis d'approfondir notre compréhension des algorithmes et de développer nos compétences en programmation. ",
         carouselImages: ["/Alexandre-Hannecart/MasterMind/jeux.png", "/Alexandre-Hannecart/MasterMind/plateauxRempli.png", "/Alexandre-Hannecart/MasterMind/menu.png"],
         category: "Jeux",
+        date: "2022",
       },
     ];
 
@@ -123,6 +130,10 @@ const Projects = () => {
                                             alt={`Image de ${project.name}`}
                                             className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-110"
                                         />
+                                        {/* Date en haut à droite */}
+                                        <div className="absolute top-4 right-4 text-white text-sm bg-black bg-opacity-50 px-2 py-1 rounded-md">
+                                            {project.date}
+                                        </div>
                                     </div>
                                     <h3 className="text-xl font-semibold mb-2">{project.name}</h3>
                                     <p className="text-muted-foreground mb-4">{project.Shortdescription}</p>
@@ -133,7 +144,10 @@ const Projects = () => {
                                     >
                                         En savoir plus
                                     </Link>
-
+                                    {/* Catégorie en bas à gauche */}
+                                    <div className="absolute bottom-4 left-4 text-white text-sm bg-black bg-opacity-50 px-2 py-1 rounded-md">
+                                        {project.category}
+                                    </div>
                                 </div>
                             ))}
                         </div>
