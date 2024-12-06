@@ -145,7 +145,7 @@ const Projects = () => {
                                         En savoir plus
                                     </Link>
                                     {/* Catégorie en bas à gauche */}
-                                    <div className="absolute bottom-4 left-4 text-white text-sm bg-black bg-opacity-50 px-2 py-1 rounded-md">
+                                    <div className="absolute bottom-4 right-4 text-white text-sm bg-black bg-opacity-50 px-2 py-1 rounded-md">
                                         {project.category}
                                     </div>
                                 </div>
