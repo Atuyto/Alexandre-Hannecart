@@ -22,13 +22,13 @@ const App = () => (
         <div className="min-h-screen flex flex-col">
           <Navbar />
           <main className="flex-grow">
-            <Routes basename="/Alexandre-Hannecart">
+            <Routes >
               <Route path="/" element={<Home />} />
               <Route path="/projects" element={<Projects />} />
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/ProjectDetails" element={<ProjectDetails />} />
-            </Routes>
+            </Routes >
           </main>
           <Footer />
         </div>
