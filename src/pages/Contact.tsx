@@ -50,7 +50,7 @@ const Contact = () => {
                     <Phone className="w-6 h-6 text-primary" />
                   </div>
                   <div>
-                    <h3 className="font-semibold">Phone</h3>
+                    <h3 className="font-semibold">Téléphone</h3>
                     <p className="text-muted-foreground">+33 06 10 58 55 48</p>
                   </div>
                 </div>
@@ -60,7 +60,7 @@ const Contact = () => {
                     <MapPin className="w-6 h-6 text-primary" />
                   </div>
                   <div>
-                    <h3 className="font-semibold">Location</h3>
+                    <h3 className="font-semibold">Localisation</h3>
                     <p className="text-muted-foreground">Jeumont, France</p>
                   </div>
                 </div>

@@ -38,7 +38,7 @@ const About = () => {
             <section>
               <h2 className="text-2xl font-semibold mb-6">Skills</h2>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                {["Java", "Java spring", "JavaScript", "Node.js", "Python", "PHP", "SQL", "HTML/CSS", "Figma", "WLangage", "PC soft", "Java spring", "C++", "C#", "C", "Android Java/Kotlin", "Window serveur", "Linux", "Docker", "React", "Git", "Virtual box"].map((skill) => (
+                {["Java", "Java spring", "JavaScript", "Node.js", "Python", "PHP", "SQL", "HTML/CSS", "Figma", "WLangage", "PC soft", "Java spring", "C++", "C#", "C", "Android Java/Kotlin", "Window serveur", "Linux", "Docker", "Type script", "Git", "Virtual box"].map((skill) => (
                   <div key={skill} className="glass-card rounded-lg p-4 text-center">
                     {skill}
                   </div>

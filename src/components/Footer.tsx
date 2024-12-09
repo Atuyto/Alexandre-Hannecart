@@ -10,7 +10,7 @@ const Footer = () => {
             <p className="text-muted-foreground">Alexandresoune@gmail.com</p>
           </div>
           <div>
-            <h3 className="text-lg font-semibold mb-4">Social</h3>
+            <h3 className="text-lg font-semibold mb-4">Sociale</h3>
             <div className="flex gap-4">
               <a href="https://github.com/Atuyto" className="text-muted-foreground hover:text-primary transition-colors">
                 <Github className="w-5 h-5" />
@@ -19,7 +19,7 @@ const Footer = () => {
           </div>
         </div>
         <div className="mt-12 pt-8 border-t border-border text-center text-muted-foreground">
-          <p>&copy; {new Date().getFullYear()} Hannecart. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Hannecart. Tout droit réserver.</p>
         </div>
       </div>
     </footer>
