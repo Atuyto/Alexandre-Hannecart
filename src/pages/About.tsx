@@ -22,7 +22,7 @@ const About = () => {
                 </p>
                 <div className="space-y-4">
                   <div>
-                    <h3 className="font-semibold mb-2">Location</h3>
+                    <h3 className="font-semibold mb-2">Localisation</h3>
                     <p className="text-muted-foreground">Jeumont, France</p>
                   </div>
                   <div>
@@ -36,7 +36,7 @@ const About = () => {
 
           <div className="space-y-12">
             <section>
-              <h2 className="text-2xl font-semibold mb-6">Skills</h2>
+              <h2 className="text-2xl font-semibold mb-6">Compétence</h2>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 {["Java", "Java spring", "JavaScript", "Node.js", "Python", "PHP", "SQL", "HTML/CSS", "Figma", "WLangage", "PC soft", "Java spring", "C++", "C#", "C", "Android Java/Kotlin", "Window serveur", "Linux", "Docker", "Type script", "Git", "Virtual box", "Unity"].map((skill) => (
                   <div key={skill} className="glass-card rounded-lg p-4 text-center">
