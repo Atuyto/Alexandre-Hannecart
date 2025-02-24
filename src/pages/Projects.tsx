@@ -103,6 +103,20 @@ const Projects = () => {
             DesignByURL: "",
             DesignBy: ""
           },
+        {
+            id: 8,
+            name: "Nut and Feather",
+            Shortdescription: "Un jeu entièrement réalisé avec Unity, comportant une IA de déplacement",
+            image: "/Alexandre-Hannecart/Nut&Feather/Start.png",
+            Description: "Nut and Feather est un jeu entièrement réalisé avec Unity, utilisant des assets d'IA. Le but du jeu est d'incarner un écureuil qui a perdu sa famille et se retrouve dans différents biomes. Il doit affronter des ennemis et collecter des fruits pour gagner des points. Il peut également ramasser des noisettes pour les utiliser comme projectiles et vaincre le boss afin d'obtenir la clé de la cage.",
+            objective: "Notre objectif était d'apprendre à utiliser Unity et ses dépendances tout en apprenant la programmation avec C#. Le but était donc de concevoir un jeu fonctionnel avant le design, en 40 heures de travail réparties sur 2 mois. Grâce à mes connaissances en 3D, j'ai pu améliorer l'aspect design.",
+            details: "",
+            carouselImages: ["/Alexandre-Hannecart/Nut&Feather/Start.png", "/Alexandre-Hannecart/Nut&Feather/Pomme.png", "/Alexandre-Hannecart/Nut&Feather/GameOver.png"],
+            category: "Jeux",
+            date: "2024",
+            DesignByURL: "",
+            DesignBy: ""
+        },
     ];
 
     const filteredProjects = filter === "all"
