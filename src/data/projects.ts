@@ -242,7 +242,7 @@ export const projects: Project[] = [
     id: 10,
     name: "Collisions-quadtree",
     Shortdescription: "Simulation de milliers d'astéroïdes avec détection de collisions optimisée par quadtree pour maximiser les FPS.",
-    image: "Collisions/collisions_quadtree.gif",
+    image: "Collisions/collisions_quadtree.mp4",
     Description: "Projet réalisé dans le cadre du cours de Programmation Avancée (IUT BUT3). L'objectif était d'afficher une simulation de milliers de météorites avec détection de collisions en temps réel, en évitant le test naïf en O(n²) grâce à une structure de données spatiale.",
     objective: "Implémenter un quadtree pour optimiser les déplacements et la détection des collisions entre astéroïdes, afin d'atteindre le meilleur débit d'images possible (FPS) tout en simulant 10 000 objets.",
     details: "Développé en Java avec Swing pour l'affichage. Structure quadtree (QuadTree, QuadTreeNode, QuadTreeLeaf) avec interface WithBB (bounding box). Liste d'astéroïdes gérée avec LList, détection des intersections via le quadtree puis test de collision sur les candidats proches. Rebonds et régénération des astéroïdes sortis de l'écran.",
