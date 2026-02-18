@@ -20,6 +20,10 @@ export interface Project {
   demoCredentials?: { login: string; password: string };
   /** Affiche "En cours de développement" sur les cartes et la page détail */
   inDevelopment?: boolean;
+  /** Galerie en slider avant/après (2 images : avant, après) */
+  carouselLayout?: "default" | "beforeAfter";
+  /** Optionnel : 2 vidéos [avant, après] (MP4/WebM) pour un slider qui ne se fige pas (remplace carouselImages pour le slider) */
+  carouselVideos?: [string, string];
 }
 
 export const projects: Project[] = [
@@ -233,6 +237,30 @@ export const projects: Project[] = [
     technologies: ["React", "TypeScript", "Spring Boot", "PostgreSQL", "JWT", "Docker", "Docker Compose", "GitHub Actions", "Swagger"],
     demoLink: "http://localhost",
     demoCredentials: { login: "admin@admin.admin", password: "admin" },
+  },
+  {
+    id: 10,
+    name: "Collisions-quadtree",
+    Shortdescription: "Simulation de milliers d'astéroïdes avec détection de collisions optimisée par quadtree pour maximiser les FPS.",
+    image: "Collisions/collisions_quadtree.gif",
+    Description: "Projet réalisé dans le cadre du cours de Programmation Avancée (IUT BUT3). L'objectif était d'afficher une simulation de milliers de météorites avec détection de collisions en temps réel, en évitant le test naïf en O(n²) grâce à une structure de données spatiale.",
+    objective: "Implémenter un quadtree pour optimiser les déplacements et la détection des collisions entre astéroïdes, afin d'atteindre le meilleur débit d'images possible (FPS) tout en simulant 10 000 objets.",
+    details: "Développé en Java avec Swing pour l'affichage. Structure quadtree (QuadTree, QuadTreeNode, QuadTreeLeaf) avec interface WithBB (bounding box). Liste d'astéroïdes gérée avec LList, détection des intersections via le quadtree puis test de collision sur les candidats proches. Rebonds et régénération des astéroïdes sortis de l'écran.",
+    carouselImages: ["Collisions/collisions_bruteforce.gif", "Collisions/collisions_quadtree.gif"],
+    category: "Jeux",
+    date: "2024 - 2025",
+    DesignByURL: "",
+    DesignBy: "",
+    layout: "steps",
+    problem: "Afficher des milliers de météorites avec détection de collisions en temps réel tout en gardant un maximum de FPS.",
+    solutions: [
+      "Utilisation d'un quadtree pour ne tester les collisions qu'entre objets proches (évite le O(n²) du brute force).",
+      "Simulation et rendu avec Swing (Board, Timer, repaint).",
+      "Gestion des BoundingBox et des listes (LList) pour les intersections.",
+    ],
+    technologies: ["Java", "Swing"],
+    carouselLayout: "beforeAfter",
+    carouselVideos: ["Collisions/collisions_bruteforce.mp4", "Collisions/collisions_quadtree.mp4"],
   }
 ];
 
@@ -244,7 +272,7 @@ export function getProjectById(id: string | undefined): Project | undefined {
 }
 
 /** IDs des projets affichés dans "Projets récents" (ordre d'affichage). */
-const RECENT_PROJECT_IDS = [9, 2, 1] as const; // TimeManagr, Arbitrhand, Möbius
+const RECENT_PROJECT_IDS = [9, 2, 1] as const; // Collisions, TimeManagr, Arbitrhand, Möbius
 
 export function getRecentProjects(_limit?: number): Project[] {
   return RECENT_PROJECT_IDS.map((id) => projects.find((p) => p.id === id)).filter(

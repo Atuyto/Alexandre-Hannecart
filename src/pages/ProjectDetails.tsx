@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { getAssetUrl } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { BeforeAfterSlider } from "@/components/BeforeAfterSlider";
 import { Copy, ExternalLink } from "lucide-react";
 import { toast } from "sonner";
 
@@ -201,13 +202,28 @@ function ProjectDetails() {
             {hasGallery && (
               <div className="space-y-4 mb-8">
                 <h3 className="text-lg font-semibold text-foreground">Captures et visuels</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {project.carouselImages!.map((item: string, index: number) => (
-                    <div key={index} className="rounded-xl overflow-hidden border border-border">
-                      {renderCarouselItem(item)}
-                    </div>
-                  ))}
-                </div>
+                {                project.carouselLayout === "beforeAfter" &&
+                project.carouselImages &&
+                project.carouselImages.length === 2 ? (
+                  <BeforeAfterSlider
+                    beforeImageUrl={getAssetUrl(
+                      project.carouselVideos?.[0] ?? project.carouselImages[0]
+                    )}
+                    afterImageUrl={getAssetUrl(
+                      project.carouselVideos?.[1] ?? project.carouselImages[1]
+                    )}
+                    beforeLabel="AVANT"
+                    afterLabel="APRÈS"
+                  />
+                ) : (
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {project.carouselImages!.map((item: string, index: number) => (
+                      <div key={index} className="rounded-xl overflow-hidden border border-border">
+                        {renderCarouselItem(item)}
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
             )}
 
