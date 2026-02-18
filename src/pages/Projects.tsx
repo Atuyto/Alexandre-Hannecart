@@ -77,11 +77,22 @@ const Projects = () => {
                   className="glass-card rounded-xl p-6 group relative flex flex-col"
                 >
                   <div className="aspect-video bg-secondary rounded-lg mb-4 overflow-hidden flex items-center justify-center relative">
-                    <img
-                      src={getAssetUrl(project.image)}
-                      alt={`Image de ${project.name}`}
-                      className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-110"
-                    />
+                    {/\.(mp4|webm)(\?|$)/i.test(project.image) ? (
+                      <video
+                        src={getAssetUrl(project.image)}
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-110"
+                      />
+                    ) : (
+                      <img
+                        src={getAssetUrl(project.image)}
+                        alt={`Image de ${project.name}`}
+                        className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-110"
+                      />
+                    )}
                     <div className="absolute top-3 right-3 text-white text-xs bg-black/60 px-2 py-1 rounded-md">
                       {project.date}
                     </div>

@@ -105,11 +105,22 @@ const Home = () => {
                 className="glass-card rounded-xl p-6 group relative"
               >
                 <div className="aspect-video bg-secondary rounded-lg mb-4 overflow-hidden relative">
-                  <img
-                    src={getAssetUrl(project.image)}
-                    alt={`Image de ${project.name}`}
-                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                  />
+                  {/\.(mp4|webm)(\?|$)/i.test(project.image) ? (
+                    <video
+                      src={getAssetUrl(project.image)}
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                    />
+                  ) : (
+                    <img
+                      src={getAssetUrl(project.image)}
+                      alt={`Image de ${project.name}`}
+                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                    />
+                  )}
                   {project.inDevelopment && (
                     <span className="absolute top-3 left-3 text-xs font-medium bg-amber-500/90 text-amber-950 px-2 py-1 rounded-md">
                       En cours de développement
