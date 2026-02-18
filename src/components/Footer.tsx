@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 const socialLinks = [
   { href: "https://github.com/Atuyto", icon: Github, label: "GitHub" },
   { href: "https://www.linkedin.com/in/alexandre-hannecart", icon: Linkedin, label: "LinkedIn" },
-  { href: "https://twitter.com", icon: Twitter, label: "Twitter" },
 ];
 
 const Footer = () => {
