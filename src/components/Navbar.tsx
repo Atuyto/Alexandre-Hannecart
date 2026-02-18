@@ -1,78 +1,104 @@
 import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+
+const navLinks = [
+  { to: "/", label: "Accueil" },
+  { to: "/projects", label: "Projets" },
+  { to: "/about", label: "À propos" },
+  { to: "/contact", label: "Contact" },
+];
 
 const Navbar = () => {
   const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
 
-  const isActive = (path: string) => location.pathname === path;
+  const isActive = (path: string) => {
+    if (path === "/") return location.pathname === "/";
+    return location.pathname.startsWith(path);
+  };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-lg border-b border-border">
-      <div className="container mx-auto px-6 h-16 flex items-center justify-between">
-        {/* Logo */}
-        <Link to="/" className="text-xl font-semibold text-foreground">
-          Hannecart Alexandre
+    <nav className="fixed top-0 left-0 right-0 z-[100] bg-background border-b border-border shadow-sm">
+      <div className="container mx-auto px-6 h-14 flex items-center justify-between">
+        <Link
+          to="/"
+          className="text-lg font-semibold text-foreground font-display focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded"
+        >
+          Alexandre Hannecart
         </Link>
 
-        {/* Burger Icon (Visible uniquement en mobile) */}
         <button
-          className="text-foreground md:hidden"
+          type="button"
+          className="text-foreground md:hidden p-2 -mr-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded"
           onClick={() => setIsOpen(!isOpen)}
-          aria-label="Toggle menu"
+          aria-label={isOpen ? "Fermer le menu" : "Ouvrir le menu"}
+          aria-expanded={isOpen}
         >
           <svg
-            className="w-6 h-6"
+            className="w-6 h-6 transition-transform"
             fill="none"
             stroke="currentColor"
             strokeWidth={2}
             viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M4 6h16M4 12h16M4 18h16"
-            ></path>
+            {isOpen ? (
+              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+            ) : (
+              <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+            )}
           </svg>
         </button>
 
-        {/* Menu Links */}
-        <div
-          className={`absolute md:static top-16 left-0 right-0 bg-background md:bg-transparent border-b md:border-none border-border p-4 md:p-0 md:flex md:items-center md:gap-8 ${
-            isOpen ? "flex flex-col gap-4" : "hidden"
-          }`}
-        >
-          <Link
-            to="/"
-            className={`nav-link ${isActive("/") ? "text-foreground" : ""}`}
-            onClick={() => setIsOpen(false)}
-          >
-            Accueil
-          </Link>
-          <Link
-            to="/projects"
-            className={`nav-link ${isActive("/projects") ? "text-foreground" : ""}`}
-            onClick={() => setIsOpen(false)}
-          >
-            Projets
-          </Link>
-          <Link
-            to="/about"
-            className={`nav-link ${isActive("/about") ? "text-foreground" : ""}`}
-            onClick={() => setIsOpen(false)}
-          >
-            A propos
-          </Link>
-          <Link
-            to="/contact"
-            className={`nav-link ${isActive("/contact") ? "text-foreground" : ""}`}
-            onClick={() => setIsOpen(false)}
-          >
-            Contact
-          </Link>
+        <div className="hidden md:flex md:items-center md:gap-1">
+          {navLinks.map(({ to, label }) => (
+            <Link
+              key={to}
+              to={to}
+              className={`relative px-3 py-2 rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+                isActive(to)
+                  ? "text-foreground"
+                  : "text-muted-foreground hover:text-foreground"
+              }`}
+            >
+              {label}
+              {isActive(to) && (
+                <span className="absolute bottom-0 left-2 right-2 h-0.5 bg-primary rounded-full" />
+              )}
+            </Link>
+          ))}
         </div>
       </div>
+
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.2 }}
+            className="md:hidden overflow-hidden border-b border-border bg-background/95 backdrop-blur"
+          >
+            <div className="container mx-auto px-6 py-4 flex flex-col gap-1">
+              {navLinks.map(({ to, label }) => (
+                <Link
+                  key={to}
+                  to={to}
+                  onClick={() => setIsOpen(false)}
+                  className={`px-3 py-2 rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+                    isActive(to)
+                      ? "text-foreground bg-primary/10"
+                      : "text-muted-foreground hover:text-foreground hover:bg-secondary/50"
+                  }`}
+                >
+                  {label}
+                </Link>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 };

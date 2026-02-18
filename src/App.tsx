@@ -18,17 +18,19 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter basename="/Alexandre-Hannecart">
+      <BrowserRouter basename={import.meta.env.BASE_URL.replace(/\/$/, '') || '/'}>
         <div className="min-h-screen flex flex-col">
           <Navbar />
-          <main className="flex-grow">
-            <Routes >
-              <Route path="/" element={<Home />} />
-              <Route path="/projects" element={<Projects />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/ProjectDetails" element={<ProjectDetails />} />
-            </Routes >
+          <main className="flex-grow pt-14 w-full flex flex-col items-center">
+            <div className="w-[80vw] max-w-full px-4 sm:px-6 flex-1">
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/projects" element={<Projects />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="/projects/:id" element={<ProjectDetails />} />
+              </Routes>
+            </div>
           </main>
           <Footer />
         </div>

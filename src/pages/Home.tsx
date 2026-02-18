@@ -1,98 +1,131 @@
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import { getRecentProjects } from "@/data/projects";
+import { getAssetUrl } from "@/lib/utils";
 
-const projects = [
-  {
-    id: 1,
-    name: "Möbius",
-    Shortdescription: "Une application pour faire du tabata",
-    image: "/Alexandre-Hannecart/Mobius/logo.png",
-    Description: "Möbius est un projet personnel que j'ai réalisé en collaboration avec un ami. Notre objectif était de concevoir une application mobile pratique et intuitive, spécialement pensée pour simplifier la gestion des arbitrages de temps lors de séances répétitives, comme celles utilisées dans les entraînements Tabata ou les exercices fractionnés",
-    objective: "L'objectif de ce projet est de proposer un outil simple et efficace pour gérer vos séances d'entraînement, en particulier celles basées sur le protocole Tabata. Cette application intuitive offre une interface conviviale qui permet de créer, configurer et suivre des cycles de temps répétitifs. Que vous soyez un sportif débutant ou confirmé, elle facilite la gestion de vos entraînements en automatisant le minutage des sessions actives et des périodes de repos. Grâce à sa simplicité d'utilisation, elle s'adapte à vos besoins et vous aide à rester concentré sur vos performances sans avoir à vous soucier des minutages manuels.",
-    details: "Möbius a été conçue spécifiquement pour Android en utilisant le langage Java. Cette application intègre des fonctionnalités avancées de gestion du temps, idéales pour automatiser les cycles d'entraînement. Elle exploite également l'enchaînement fluide de fragments pour offrir une expérience utilisateur optimale et bien structurée. Grâce à cette architecture moderne, Möbius garantit une navigation intuitive entre les différentes sections de l'application, tout en assurant une transition rapide et sans accroc. Ce choix technologique permet de répondre efficacement aux besoins des utilisateurs, qu'il s'agisse de configurer des séances ou de suivre leur progression.",
-    carouselImages: ["/Alexandre-Hannecart/Mobius/home.png", "/Alexandre-Hannecart/Mobius/Ready.png", "/Alexandre-Hannecart/Mobius/GO.png", "/Alexandre-Hannecart/Mobius/Pause.png", "/Alexandre-Hannecart/Mobius/Cycle.png"],
-    DesignByURL: "https://antoine-carrere.fr/",
-    DesignBy: "Design réalisé par Antoine Carrere"
+const recentProjects = getRecentProjects();
+
+const container = {
+  hidden: { opacity: 0 },
+  visible: (i = 1) => ({
+    opacity: 1,
+    transition: { staggerChildren: 0.12, delayChildren: 0.04 * i },
+  }),
+};
+
+const item = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.4, ease: "easeOut" },
   },
-  {
-    id: 2,
-    name: "Arbitrhand",
-    Shortdescription: "Une application pour la gestion de matchs de handball",
-    image: "/Alexandre-Hannecart/Arbitrhand/logo.png",
-    Description: "ARBITRHAND est un projet personnel que j'ai entrepris en collaboration avec l'un de mes amis. Notre objectif était de concevoir une application mobile destinée à faciliter la gestion des arbitrages de handball. Cette initiative a été motivée par notre passion commune pour le sport ainsi que par le désir de répondre à un besoin concret dans la communauté des arbitres et des amateurs de handball. Tout au long de ce projet, nous avons mis l'accent sur l'efficacité et la convivialité de l'application, cherchant à fournir une solution pratique et intuitive pour les arbitres, tout en offrant une expérience améliorée pour les utilisateurs. ",
-    objective: "Notre objectif principal était d'offrir une personnalisation complète de la configuration des matchs à travers l'application. Grâce à ce projet, j'ai pu réaliser un travail pour un client dans des conditions optimales. Cette expérience m'a permis de développer mes compétences en front-end, en relevant de nombreux défis, notamment celui de l'affichage dynamique des pénalités. De plus, j'ai acquis une compréhension approfondie de l'architecture MVC (Modèle-Vue-Contrôleur), qui a été cruciale pour le développement de l'application. Pour garantir des mises à jour constantes et éviter toute régression de l'application, j'ai intégré des tests JUnit dans le processus de développement, assurant ainsi la qualité et la fiabilité du produit final. ",
-    details: "Arbitrhand intègre des fonctionnalités avancées pour le suivi des joueurs et la gestion des sanctions.",
-    carouselImages: ["/Alexandre-Hannecart/Arbitrhand/Home.png", "/Alexandre-Hannecart/Arbitrhand/Loading.png", "/Alexandre-Hannecart/Arbitrhand/horizontal.png"],
-    DesignByURL: "https://antoine-carrere.fr/",
-    DesignBy: "Design réalisé par Antoine Carrere"
-  },
-  {
-    id: 3,
-    name: "MakeU",
-    Shortdescription: "Une application permettant d'organisé ses séance de sport",
-    image: "/Alexandre-Hannecart/MakeU/logo.svg",
-    Description: "Make-U est un projet personnel, une application conçue pour créer et suivre des programmes d'entraînement. Cette application offre une multitude de fonctionnalités, notamment le suivi des séances de musculation, le suivi des caractéristiques physiques de l'utilisateur, ainsi qu'un calendrier intégré avec des séances prévues pour la semaine, accompagné de rappels automatiques. Dans un futur proche, Make-U inclura également un système communautaire où les utilisateurs pourront partager des astuces sportives, des actualités et d'autres contenus pertinents pour enrichir l'expérience de fitness de chacun. ",
-    objective: "L'objectif principal de Make-U est de proposer une interface simple permettant à l'utilisateur d'avoir immédiatement un suivi clair de ses performances ainsi que de sa prochaine séance prévue. Cette application vise à offrir une expérience intuitive et efficace pour suivre les progrès de l'utilisateur et planifier ses entraînements en toute facilité. Par le biais de ce projet, j'ai pu approfondir ma compréhension et ma pratique du modèle MVC (Modèle-Vue-Contrôleur), ce qui a considérablement renforcé mes compétences en développement front-end. Make-U représente donc une opportunité essentielle pour perfectionner mes capacités dans ce domaine. ",
-    details: "Cette application est entièrement développée en Java. Pour implémenter les différentes fonctionnalités, j'ai mis en place un serveur Spring Boot. Ce serveur me permet de stocker les informations des utilisateurs ainsi que toutes les données nécessaires pour chaque utilisateur, y compris les articles qu'ils publient ",
-    carouselImages: ["/Alexandre-Hannecart/MakeU/home.png", "/Alexandre-Hannecart/MakeU/Connection.png", "/Alexandre-Hannecart/MakeU/fyp.png", "/Alexandre-Hannecart/MakeU/Seance.png", "./MakeU/Calendar.png"],
-    DesignByURL: "https://antoine-carrere.fr/",
-    DesignBy: "Design réalisé par Antoine Carrere"
-  },
-];
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 24 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { delay: i * 0.1, duration: 0.4, ease: "easeOut" },
+  }),
+};
 
 const Home = () => {
   return (
     <div className="page-transition">
-      <section className="min-h-screen flex items-center justify-center pt-16">
+      <section className="min-h-screen flex items-center justify-center pt-14 hero-gradient">
         <div className="container px-6">
-          <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-2xl md:text-4xl font-bold mb-6">
-              Je suis Alexandre, un étudiant dévoué en informatique qui se passionne pour le développement d’applications.
-              <br />
-              j’aime transformer les idées en réalités, une ligne de code à la fois.
-              <br /><br />
-              Ensemble,<span className="text-primary"> façonnons l’avenir du numérique</span>
-            </h1>
-            <p className="text-xl text-muted-foreground mb-8">
-              Développeur passionné par la construction d'applications esthétiques et fonctionnelles
-            </p>
-            <Link
-              to="/projects"
-              className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-lg hover:bg-primary/90 transition-colors"
+          <motion.div
+            className="max-w-3xl mx-auto text-center"
+            variants={container}
+            initial="hidden"
+            animate="visible"
+          >
+            <motion.h1
+              variants={item}
+              className="text-3xl md:text-5xl font-bold mb-6 font-display leading-tight"
             >
-              Voir mes projets
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
+              Je suis Alexandre, un étudiant dévoué en informatique qui se passionne pour le
+              développement d'applications.
+              <br />
+              <span className="text-muted-foreground font-normal text-2xl md:text-4xl">
+                J'aime transformer les idées en réalités, une ligne de code à la fois.
+              </span>
+              <br />
+              <span className="text-primary">Ensemble, façonnons l'avenir du numérique.</span>
+            </motion.h1>
+            <motion.p
+              variants={item}
+              className="text-xl text-muted-foreground mb-10"
+            >
+              Développeur passionné par la construction d'applications esthétiques et fonctionnelles
+            </motion.p>
+            <motion.div variants={item} className="flex flex-wrap items-center justify-center gap-4">
+              <Link
+                to="/projects"
+                className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-lg hover:bg-primary/90 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring group"
+              >
+                Voir mes projets
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </Link>
+              <Link
+                to="/contact"
+                className="inline-flex items-center gap-2 border border-border px-6 py-3 rounded-lg text-foreground hover:bg-secondary/50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              >
+                Me contacter
+              </Link>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 
-      <section className="py-20">
+      <section className="py-24">
         <div className="container px-6">
-          <h2 className="text-3xl font-bold text-center mb-12">Projets récents</h2>
+          <motion.h2
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.4 }}
+            className="text-3xl font-bold text-center mb-14 font-display"
+          >
+            Projets récents
+          </motion.h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.map((project) => (
-                <div
-                    key={project.id}
-                    className="glass-card rounded-lg p-6 group hover:scale-105 transition-transform duration-300"
-                >
-                  <div className="aspect-video bg-secondary rounded-md mb-4 overflow-hidden">
-                    <img
-                        src={project.image}
-                        alt={`Image de ${project.name}`}
-                        className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <h3 className="text-xl font-semibold mb-2">{project.name}</h3>
-                  <p className="text-muted-foreground mb-4">{project.Shortdescription}</p>
-                  <Link
-                      to="/ProjectDetails"
-                      state={project} // Passe toutes les données ici
-                      className="text-primary hover:text-primary/80 transition-colors inline-flex items-center gap-2"
-                  >
-                    En savoir plus
-                  </Link>
+            {recentProjects.map((project, index) => (
+              <motion.div
+                key={project.id}
+                variants={cardVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-30px" }}
+                custom={index}
+                whileHover={{ scale: 1.02, boxShadow: "0 20px 40px -12px rgb(0 0 0 / 0.25)" }}
+                className="glass-card rounded-xl p-6 group relative"
+              >
+                <div className="aspect-video bg-secondary rounded-lg mb-4 overflow-hidden relative">
+                  <img
+                    src={getAssetUrl(project.image)}
+                    alt={`Image de ${project.name}`}
+                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
+                  {project.inDevelopment && (
+                    <span className="absolute top-3 left-3 text-xs font-medium bg-amber-500/90 text-amber-950 px-2 py-1 rounded-md">
+                      En cours de développement
+                    </span>
+                  )}
                 </div>
+                <h3 className="text-xl font-semibold mb-2">{project.name}</h3>
+                <p className="text-muted-foreground mb-4">{project.Shortdescription}</p>
+                <Link
+                  to={`/projects/${project.id}`}
+                  className="text-primary hover:text-primary/80 transition-colors inline-flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded group/link"
+                >
+                  En savoir plus
+                  <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
+                </Link>
+              </motion.div>
             ))}
           </div>
         </div>
