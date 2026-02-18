@@ -45,7 +45,7 @@ const Contact = () => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.4, delay: 0.1 }}
             >
-              <p className="text-muted-foreground mb-8 leading-relaxed">
+              <p className="text-base text-muted-foreground mb-8 leading-relaxed">
                 Je suis toujours intéressé par de nouveaux projets et de nouvelles opportunités.
                 N'hésitez pas à me contacter si vous souhaitez échanger avec moi !
               </p>
@@ -56,7 +56,7 @@ const Contact = () => {
                     <Mail className="w-6 h-6 text-primary" />
                   </div>
                   <div>
-                    <h3 className="font-semibold">Email</h3>
+                    <h3 className="text-base font-semibold">Email</h3>
                     <a
                       href="mailto:Alexandresoune@gmail.com"
                       className="text-muted-foreground hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded"
@@ -71,7 +71,7 @@ const Contact = () => {
                     <Phone className="w-6 h-6 text-primary" />
                   </div>
                   <div>
-                    <h3 className="font-semibold">Téléphone</h3>
+                    <h3 className="text-base font-semibold">Téléphone</h3>
                     <p className="text-muted-foreground">+33 6 10 58 55 48</p>
                   </div>
                 </div>
@@ -81,7 +81,7 @@ const Contact = () => {
                     <MapPin className="w-6 h-6 text-primary" />
                   </div>
                   <div>
-                    <h3 className="font-semibold">Localisation</h3>
+                    <h3 className="text-base font-semibold">Localisation</h3>
                     <p className="text-muted-foreground">Jeumont, France</p>
                   </div>
                 </div>

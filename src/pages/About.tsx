@@ -42,7 +42,7 @@ const About = () => {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
-            className="text-4xl font-bold mb-12 font-display"
+            className="text-3xl sm:text-4xl font-bold mb-12 font-display"
           >
             À propos de moi
           </motion.h1>
@@ -51,7 +51,7 @@ const About = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.1 }}
-            className="glass-card rounded-xl p-8 mb-16"
+            className="glass-card rounded-xl p-6 sm:p-8 mb-16"
           >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
               <div className="aspect-square bg-secondary rounded-xl overflow-hidden">
@@ -63,7 +63,7 @@ const About = () => {
               </div>
               <div>
                 <h2 className="text-2xl font-semibold mb-4 font-display">Qui suis-je</h2>
-                <p className="text-muted-foreground mb-6 leading-relaxed">
+                <p className="text-base text-muted-foreground mb-6 leading-relaxed">
                   Je suis Alexandre, un étudiant dévoué en informatique qui se passionne pour le
                   développement d'applications. J'aime transformer les idées en réalités, une ligne
                   de code à la fois. Ensemble, façonnons l'avenir du numérique.
@@ -98,7 +98,7 @@ const About = () => {
               <div className="space-y-8">
                 {skillGroups.map((group) => (
                   <div key={group.label}>
-                    <h3 className="text-sm font-medium text-muted-foreground mb-3 uppercase tracking-wider">
+                    <h3 className="text-base sm:text-sm font-medium text-muted-foreground mb-3 uppercase tracking-wider">
                       {group.label}
                     </h3>
                     <div className="flex flex-wrap gap-2">
@@ -106,7 +106,7 @@ const About = () => {
                         <Badge
                           key={skill}
                           variant="secondary"
-                          className="text-xs font-normal py-1 px-3"
+                          className="text-sm font-normal py-1 px-3"
                         >
                           {skill}
                         </Badge>
@@ -145,7 +145,7 @@ const About = () => {
                     <div className="glass-card rounded-xl p-6 ml-2">
                       <h3 className="text-xl font-semibold mb-1">{job.role}</h3>
                       <p className="text-primary font-medium mb-1">{job.company}</p>
-                      <p className="text-muted-foreground text-sm">{job.period}</p>
+                      <p className="text-muted-foreground text-base sm:text-sm">{job.period}</p>
                     </div>
                   </motion.div>
                 ))}

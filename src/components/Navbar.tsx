@@ -86,7 +86,7 @@ const Navbar = () => {
                   key={to}
                   to={to}
                   onClick={() => setIsOpen(false)}
-                  className={`px-3 py-2 rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+                  className={`px-3 py-3 rounded-md text-base font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
                     isActive(to)
                       ? "text-foreground bg-primary/10"
                       : "text-muted-foreground hover:text-foreground hover:bg-secondary/50"

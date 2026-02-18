@@ -31,7 +31,7 @@ const Projects = () => {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
-          className="text-4xl font-bold mb-12 font-display"
+          className="text-3xl sm:text-4xl font-bold mb-12 font-display"
         >
           Mes projets
         </motion.h1>
@@ -47,7 +47,7 @@ const Projects = () => {
               key={category}
               type="button"
               onClick={() => setFilter(category.toLowerCase())}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+              className={`px-4 py-2 rounded-full text-base sm:text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
                 filter === category.toLowerCase()
                   ? "bg-primary text-primary-foreground"
                   : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
@@ -93,17 +93,17 @@ const Projects = () => {
                         className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-110"
                       />
                     )}
-                    <div className="absolute top-3 right-3 text-white text-xs bg-black/60 px-2 py-1 rounded-md">
+                    <div className="absolute top-3 right-3 text-white text-sm bg-black/60 px-2 py-1 rounded-md">
                       {project.date}
                     </div>
                     {project.inDevelopment && (
-                      <span className="absolute top-3 left-3 text-xs font-medium bg-amber-500/90 text-amber-950 px-2 py-1 rounded-md">
+                      <span className="absolute top-3 left-3 text-sm font-medium bg-amber-500/90 text-amber-950 px-2 py-1 rounded-md">
                         En cours de développement
                       </span>
                     )}
                   </div>
                   <h3 className="text-xl font-semibold mb-2">{project.name}</h3>
-                  <p className="text-muted-foreground mb-4 flex-grow">{project.Shortdescription}</p>
+                  <p className="text-base leading-relaxed text-muted-foreground mb-4 flex-grow">{project.Shortdescription}</p>
                   <div className="flex items-center justify-between gap-2 mt-auto pt-2">
                     <Link
                       to={`/projects/${project.id}`}
@@ -111,7 +111,7 @@ const Projects = () => {
                     >
                       En savoir plus
                     </Link>
-                    <span className="text-xs text-muted-foreground bg-secondary/80 px-2 py-1 rounded-md shrink-0">
+                    <span className="text-sm text-muted-foreground bg-secondary/80 px-2 py-1 rounded-md shrink-0">
                       {project.category}
                     </span>
                   </div>

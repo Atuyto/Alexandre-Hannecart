@@ -40,22 +40,22 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-semibold mb-4 font-display">Navigation</h3>
             <nav className="flex flex-col gap-2">
-              <Link to="/" className="text-muted-foreground hover:text-primary transition-colors w-fit focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded">
+              <Link to="/" className="text-base text-muted-foreground hover:text-primary transition-colors w-fit focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded">
                 Accueil
               </Link>
-              <Link to="/projects" className="text-muted-foreground hover:text-primary transition-colors w-fit focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded">
+              <Link to="/projects" className="text-base text-muted-foreground hover:text-primary transition-colors w-fit focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded">
                 Projets
               </Link>
-              <Link to="/about" className="text-muted-foreground hover:text-primary transition-colors w-fit focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded">
+              <Link to="/about" className="text-base text-muted-foreground hover:text-primary transition-colors w-fit focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded">
                 À propos
               </Link>
-              <Link to="/contact" className="text-muted-foreground hover:text-primary transition-colors w-fit focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded">
+              <Link to="/contact" className="text-base text-muted-foreground hover:text-primary transition-colors w-fit focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded">
                 Contact
               </Link>
             </nav>
           </div>
         </div>
-        <div className="mt-12 pt-8 border-t border-border text-center text-muted-foreground text-sm">
+        <div className="mt-12 pt-8 border-t border-border text-center text-muted-foreground text-base sm:text-sm">
           <p>&copy; {new Date().getFullYear()} Alexandre Hannecart. Tous droits réservés.</p>
         </div>
       </div>

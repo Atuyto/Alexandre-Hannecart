@@ -62,6 +62,10 @@ function ProjectDetails() {
   const project = getProjectById(id);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [id]);
+
+  useEffect(() => {
     if (id != null && project == null) {
       navigate("/", { replace: true });
     }
@@ -91,7 +95,7 @@ function ProjectDetails() {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
-          className="text-4xl font-bold text-center mb-4 bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/70 font-display"
+          className="text-3xl sm:text-4xl font-bold text-center mb-4 bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/70 font-display"
         >
           {project.name}
         </motion.h1>
@@ -99,7 +103,7 @@ function ProjectDetails() {
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.1 }}
-          className="text-center text-muted-foreground mb-4 max-w-2xl mx-auto"
+          className="text-base text-center text-muted-foreground mb-4 max-w-2xl mx-auto"
         >
           {project.Shortdescription}
         </motion.p>
@@ -116,18 +120,18 @@ function ProjectDetails() {
           )}
         </motion.div>
 
-        <div className="max-w-3xl mx-auto space-y-24">
+        <div className="max-w-3xl mx-auto space-y-16 sm:space-y-24">
           {/* Étape 1 – Problématique */}
           <motion.section
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.5 }}
-            className="glass-card rounded-2xl p-8"
+            className="glass-card rounded-2xl p-5 sm:p-6 md:p-8"
           >
-            <span className="text-sm font-semibold text-primary uppercase tracking-wider">Étape 1</span>
+            <span className="text-base sm:text-sm font-semibold text-primary uppercase tracking-wider">Étape 1</span>
             <h2 className="text-2xl font-bold mt-2 mb-4 font-display">Problématique</h2>
-            <p className="text-muted-foreground leading-relaxed">{project.problem}</p>
+            <p className="text-base text-muted-foreground leading-relaxed">{project.problem}</p>
           </motion.section>
 
           {/* Étape 2 – Solutions */}
@@ -137,9 +141,9 @@ function ProjectDetails() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.5 }}
-              className="glass-card rounded-2xl p-8"
+              className="glass-card rounded-2xl p-5 sm:p-6 md:p-8"
             >
-              <span className="text-sm font-semibold text-primary uppercase tracking-wider">Étape 2</span>
+              <span className="text-base sm:text-sm font-semibold text-primary uppercase tracking-wider">Étape 2</span>
               <h2 className="text-2xl font-bold mt-2 mb-6 font-display">Solutions</h2>
               <ul className="space-y-4">
                 {project.solutions.map((solution, i) => (
@@ -152,7 +156,7 @@ function ProjectDetails() {
                     className="flex gap-3 items-start"
                   >
                     <span className="mt-1.5 w-2 h-2 rounded-full bg-primary shrink-0" />
-                    <span className="text-muted-foreground leading-relaxed">{solution}</span>
+                    <span className="text-base text-muted-foreground leading-relaxed">{solution}</span>
                   </motion.li>
                 ))}
               </ul>
@@ -166,9 +170,9 @@ function ProjectDetails() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.5 }}
-              className="glass-card rounded-2xl p-8"
+              className="glass-card rounded-2xl p-5 sm:p-6 md:p-8"
             >
-              <span className="text-sm font-semibold text-primary uppercase tracking-wider">Étape 3</span>
+              <span className="text-base sm:text-sm font-semibold text-primary uppercase tracking-wider">Étape 3</span>
               <h2 className="text-2xl font-bold mt-2 mb-6 font-display">Technologies</h2>
               <div className="flex flex-wrap gap-2">
                 {project.technologies.map((tech, i) => (
@@ -194,9 +198,9 @@ function ProjectDetails() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.5 }}
-            className="glass-card rounded-2xl p-8"
+            className="glass-card rounded-2xl p-5 sm:p-6 md:p-8"
           >
-            <span className="text-sm font-semibold text-primary uppercase tracking-wider">Étape {resultStepNumber}</span>
+            <span className="text-base sm:text-sm font-semibold text-primary uppercase tracking-wider">Étape {resultStepNumber}</span>
             <h2 className="text-2xl font-bold mt-2 mb-6 font-display">Résultat</h2>
 
             {hasGallery && (
@@ -229,14 +233,14 @@ function ProjectDetails() {
 
             {hasDemo && (
               <>
-                <p className="text-muted-foreground mb-4">
+                <p className="text-base text-muted-foreground mb-4">
                   L'application est disponible en local. Lancez le projet pour la voir ci-dessous.
                 </p>
                 {project.demoCredentials && (
                   <div className="mb-4">
                     <div className="inline-flex items-center gap-2 rounded-lg border border-border bg-secondary/50 px-4 py-2 text-sm">
                       <span className="text-muted-foreground">Identifiants de test :</span>
-                      <code className="text-foreground font-mono text-xs">
+                      <code className="text-foreground font-mono text-sm">
                         {project.demoCredentials.login} / {project.demoCredentials.password}
                       </code>
                       <Button
@@ -252,7 +256,7 @@ function ProjectDetails() {
                     </div>
                   </div>
                 )}
-                <p className="text-muted-foreground text-sm mb-3">
+                <p className="text-base sm:text-sm text-muted-foreground mb-3">
                   Si la barre de navigation ne s'affiche pas dans l'aperçu, ouvrez l'application dans un nouvel onglet pour une vue complète.
                 </p>
                 <a
@@ -276,7 +280,7 @@ function ProjectDetails() {
             )}
 
             {!hasResultContent && (
-              <p className="text-muted-foreground">Aucune capture ou démo disponible pour ce projet.</p>
+              <p className="text-base text-muted-foreground">Aucune capture ou démo disponible pour ce projet.</p>
             )}
           </motion.section>
 
@@ -307,7 +311,7 @@ function ProjectDetails() {
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
-        className="text-4xl font-bold text-center mb-4 bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/70 font-display"
+        className="text-3xl sm:text-4xl font-bold text-center mb-4 bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/70 font-display"
       >
         {project.name}
       </motion.h1>

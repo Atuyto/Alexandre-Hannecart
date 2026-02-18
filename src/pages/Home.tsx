@@ -45,7 +45,7 @@ const Home = () => {
           >
             <motion.h1
               variants={item}
-              className="text-3xl md:text-5xl font-bold mb-6 font-display leading-tight"
+              className="text-3xl md:text-5xl font-bold mb-6 font-display leading-snug"
             >
               Je suis Alexandre, un étudiant dévoué en informatique qui se passionne pour le
               développement d'applications.
@@ -58,7 +58,7 @@ const Home = () => {
             </motion.h1>
             <motion.p
               variants={item}
-              className="text-xl text-muted-foreground mb-10"
+              className="text-lg md:text-xl text-muted-foreground mb-10"
             >
               Développeur passionné par la construction d'applications esthétiques et fonctionnelles
             </motion.p>
@@ -128,7 +128,7 @@ const Home = () => {
                   )}
                 </div>
                 <h3 className="text-xl font-semibold mb-2">{project.name}</h3>
-                <p className="text-muted-foreground mb-4">{project.Shortdescription}</p>
+                <p className="text-base leading-relaxed text-muted-foreground mb-4">{project.Shortdescription}</p>
                 <Link
                   to={`/projects/${project.id}`}
                   className="text-primary hover:text-primary/80 transition-colors inline-flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded group/link"
