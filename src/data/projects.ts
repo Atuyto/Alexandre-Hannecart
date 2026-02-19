@@ -235,7 +235,7 @@ export const projects: Project[] = [
       "DevOps : Docker Compose (backend, frontend, BDD, reverse proxy), pipeline GitHub Actions (build, tests, couverture), environnements dev et production.",
     ],
     technologies: ["React", "TypeScript", "Spring Boot", "PostgreSQL", "JWT", "Docker", "Docker Compose", "GitHub Actions", "Swagger"],
-    demoLink: "http://localhost",
+    demoLink: "https://timemanager.alexandre.dev.sarkaa.fr/",
     demoCredentials: { login: "admin@admin.admin", password: "admin" },
   },
   {
