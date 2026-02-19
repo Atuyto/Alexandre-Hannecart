@@ -248,7 +248,7 @@ export const projects: Project[] = [
     details: "Développé en Java avec Swing pour l'affichage. Structure quadtree (QuadTree, QuadTreeNode, QuadTreeLeaf) avec interface WithBB (bounding box). Liste d'astéroïdes gérée avec LList, détection des intersections via le quadtree puis test de collision sur les candidats proches. Rebonds et régénération des astéroïdes sortis de l'écran.",
     carouselImages: ["Collisions/collisions_bruteforce.gif", "Collisions/collisions_quadtree.gif"],
     category: "Jeux",
-    date: "2024 - 2025",
+    date: "2023 - 2024",
     DesignByURL: "",
     DesignBy: "",
     layout: "steps",
