@@ -60,7 +60,7 @@ export const projects: Project[] = [
     details: "Arbitrhand intègre des fonctionnalités avancées pour le suivi des joueurs et la gestion des sanctions.",
     carouselImages: ["Arbitrhand/Home.png", "Arbitrhand/Loading.png", "Arbitrhand/horizontal.png"],
     category: "Mobile",
-    date: "2023 - 2024",
+    date: "2024 - 2026",
     DesignByURL: "https://antoine-carrere.fr/",
     DesignBy: "Design réalisé par Antoine Carrere",
     layout: "steps",
