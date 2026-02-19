@@ -217,7 +217,7 @@ export const projects: Project[] = [
     name: "TimeManager",
     Shortdescription: "Application de gestion des horaires et des équipes réalisée à Epitech (projet Trinity).",
     image: "TimeManagr/cover.svg",
-    Description: "TimeManagr permet aux employés de pointer leurs arrivées et départs, et aux managers de gérer les équipes et de consulter les KPIs.",
+    Description: "TimeManager permet aux employés de pointer leurs arrivées et départs, et aux managers de gérer les équipes et de consulter les KPIs.",
     objective: "Projet full-stack suivant la philosophie DevOps : API REST, rôles employé/manager, Docker et CI/CD.",
     details: "Architecture 3 tiers, API REST (users, teams, clocks, reports), authentification JWT, pipeline GitHub Actions.",
     carouselImages: [],
@@ -272,7 +272,7 @@ export function getProjectById(id: string | undefined): Project | undefined {
 }
 
 /** IDs des projets affichés dans "Projets récents" (ordre d'affichage). */
-const RECENT_PROJECT_IDS = [9, 2, 1] as const; // Collisions, TimeManagr, Arbitrhand, Möbius
+const RECENT_PROJECT_IDS = [9, 2, 1] as const; // Collisions, TimeManager, Arbitrhand, Möbius
 
 export function getRecentProjects(_limit?: number): Project[] {
   return RECENT_PROJECT_IDS.map((id) => projects.find((p) => p.id === id)).filter(
