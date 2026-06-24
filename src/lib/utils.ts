@@ -5,7 +5,7 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-/** URL pour les assets (images) : fonctionne en dev (/) et sur GitHub Pages (/Alexandre-Hannecart/) */
+/** URL pour les assets (images) : fonctionne en racine (Vercel) ou en sous-dossier (GitHub Pages). */
 export function getAssetUrl(path: string): string {
   if (!path) return ""
   if (path.startsWith("http://") || path.startsWith("https://")) return path
