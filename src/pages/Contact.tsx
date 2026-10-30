@@ -1,115 +1,129 @@
 import { useState } from "react";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { toast } from "sonner";
-import { motion } from "framer-motion";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
+import { PageHeader } from "@/components/layout/PageHeader";
+import { Reveal } from "@/components/motion/Reveal";
+
+type FormStatus = "idle" | "loading" | "success" | "error";
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
+  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [status, setStatus] = useState<FormStatus>("idle");
+  const [errorMessage, setErrorMessage] = useState("");
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    toast.success("Message envoyé avec succès !");
-    setFormData({ name: "", email: "", message: "" });
     const form = e.currentTarget;
-    const data = new FormData(form);
-    fetch(form.action, {
-      method: form.method,
-      body: data,
-    }).then(() => {});
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+    setStatus("loading");
+    setErrorMessage("");
+
+    try {
+      const response = await fetch(form.action, {
+        method: form.method,
+        body: new FormData(form),
+        headers: { Accept: "application/json" },
+      });
+
+      if (response.ok) {
+        setStatus("success");
+        setFormData({ name: "", email: "", message: "" });
+        toast.success("Message envoyé avec succès !");
+        return;
+      }
+
+      setStatus("error");
+      setErrorMessage(
+        "L'envoi a échoué. Réessayez dans un instant ou écrivez-moi directement par email."
+      );
+      toast.error("Échec de l'envoi du message");
+    } catch {
+      setStatus("error");
+      setErrorMessage(
+        "Connexion impossible. Vérifiez votre réseau ou contactez-moi par email ci-contre."
+      );
+      toast.error("Échec de l'envoi du message");
+    }
   };
 
   return (
-    <div className="page-transition pt-8">
-      <div className="container px-6">
-        <div className="max-w-4xl mx-auto">
-          <motion.h1
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
-            className="text-4xl font-bold mb-12 font-display"
-          >
-            Contactez-moi
-          </motion.h1>
+    <div className="page-transition pt-10 pb-24">
+      <div className="site-shell-wide max-w-4xl">
+        <Reveal className="mb-12">
+          <PageHeader
+            title="Contactez-moi"
+            description="Je suis toujours intéressé par de nouveaux projets et de nouvelles opportabilités. N'hésitez pas à me contacter !"
+          />
+        </Reveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            <motion.div
-              initial={{ opacity: 0, x: -16 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.4, delay: 0.1 }}
-            >
-              <p className="text-base text-muted-foreground mb-8 leading-relaxed">
-                Je suis toujours intéressé par de nouveaux projets et de nouvelles opportunités.
-                N'hésitez pas à me contacter si vous souhaitez échanger avec moi !
-              </p>
-
-              <div className="space-y-6">
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
-                    <Mail className="w-6 h-6 text-primary" />
-                  </div>
-                  <div>
-                    <h3 className="text-base font-semibold">Email</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+          <Reveal variant="fade" className="space-y-6">
+            {[
+              { icon: Mail, title: "Email", href: "mailto:Alexandresoune@gmail.com", text: "Alexandresoune@gmail.com" },
+              { icon: Phone, title: "Téléphone", text: "+33 6 10 58 55 48" },
+              { icon: MapPin, title: "Localisation", text: "Fourmies, France" },
+            ].map(({ icon: Icon, title, href, text }) => (
+              <div key={title} className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-lg bg-secondary flex items-center justify-center shrink-0 border border-border">
+                  <Icon className="w-5 h-5 text-foreground" aria-hidden />
+                </div>
+                <div>
+                  <h3 className="font-semibold">{title}</h3>
+                  {href ? (
                     <a
-                      href="mailto:Alexandresoune@gmail.com"
-                      className="text-muted-foreground hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded"
+                      href={href}
+                      className="text-muted-foreground hover:text-primary transition-colors rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                     >
-                      Alexandresoune@gmail.com
+                      {text}
                     </a>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
-                    <Phone className="w-6 h-6 text-primary" />
-                  </div>
-                  <div>
-                    <h3 className="text-base font-semibold">Téléphone</h3>
-                    <p className="text-muted-foreground">+33 6 10 58 55 48</p>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
-                    <MapPin className="w-6 h-6 text-primary" />
-                  </div>
-                  <div>
-                    <h3 className="text-base font-semibold">Localisation</h3>
-                    <p className="text-muted-foreground">Jeumont, France</p>
-                  </div>
+                  ) : (
+                    <p className="text-muted-foreground">{text}</p>
+                  )}
                 </div>
               </div>
-            </motion.div>
+            ))}
+          </Reveal>
 
-            <motion.form
-              initial={{ opacity: 0, x: 16 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.4, delay: 0.15 }}
+          <Reveal variant="rise">
+            <form
               onSubmit={handleSubmit}
-              className="glass-card rounded-xl p-6 space-y-4"
+              className="surface-card p-6 sm:p-8 space-y-4"
               action="https://formspree.io/f/mbjnaqey"
               method="post"
             >
+              <div
+                role="status"
+                aria-live="polite"
+                aria-atomic="true"
+                className="min-h-[1.25rem] text-sm"
+              >
+                {status === "success" && (
+                  <p className="text-primary font-medium">Message envoyé. Je vous répondrai dès que possible.</p>
+                )}
+                {status === "error" && errorMessage && (
+                  <p className="text-destructive font-medium">{errorMessage}</p>
+                )}
+              </div>
+
               <div className="space-y-2">
                 <Label htmlFor="name">Nom</Label>
                 <Input
-                  type="text"
                   id="name"
                   name="name"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   required
-                  className="bg-secondary/50 border-border"
+                  disabled={status === "loading"}
+                  className="bg-card border-border"
                 />
               </div>
-
               <div className="space-y-2">
                 <Label htmlFor="email">Email</Label>
                 <Input
@@ -119,10 +133,10 @@ const Contact = () => {
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   required
-                  className="bg-secondary/50 border-border"
+                  disabled={status === "loading"}
+                  className="bg-card border-border"
                 />
               </div>
-
               <div className="space-y-2">
                 <Label htmlFor="message">Message</Label>
                 <Textarea
@@ -132,15 +146,15 @@ const Contact = () => {
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   rows={5}
                   required
-                  className="bg-secondary/50 border-border resize-none"
+                  disabled={status === "loading"}
+                  className="bg-card border-border resize-none"
                 />
               </div>
-
-              <Button type="submit" className="w-full" size="lg">
-                Envoyer le message
+              <Button type="submit" className="w-full" size="lg" disabled={status === "loading"}>
+                {status === "loading" ? "Envoi en cours…" : "Envoyer le message"}
               </Button>
-            </motion.form>
-          </div>
+            </form>
+          </Reveal>
         </div>
       </div>
     </div>

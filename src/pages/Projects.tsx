@@ -1,23 +1,17 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { projects } from "@/data/projects";
-import { getAssetUrl } from "@/lib/utils";
+import { PageHeader } from "@/components/layout/PageHeader";
+import { ProjectCard } from "@/components/projects/ProjectCard";
+import { Reveal } from "@/components/motion/Reveal";
+import { cn } from "@/lib/utils";
+import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 
 const categories = ["all", "Web", "Mobile", "Jeux"] as const;
 
-const cardVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: { delay: i * 0.05, duration: 0.35, ease: "easeOut" },
-  }),
-  exit: { opacity: 0, scale: 0.98 },
-};
-
 const Projects = () => {
   const [filter, setFilter] = useState<string>("all");
+  const reduced = usePrefersReducedMotion();
 
   const filteredProjects =
     filter === "all"
@@ -25,101 +19,57 @@ const Projects = () => {
       : projects.filter((p) => p.category.toLowerCase() === filter.toLowerCase());
 
   return (
-    <div className="page-transition pt-8">
-      <div className="container px-6">
-        <motion.h1
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4 }}
-          className="text-3xl sm:text-4xl font-bold mb-12 font-display"
-        >
-          Mes projets
-        </motion.h1>
+    <div className="page-transition pt-10 pb-24">
+      <div className="site-shell-wide">
+        <Reveal className="mb-14 max-w-3xl">
+          <PageHeader
+            title="Mes projets"
+            description="Mobile, web et jeux — avec le contexte et les choix techniques de chaque réalisation."
+          />
+        </Reveal>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.1 }}
-          className="flex flex-wrap gap-3 mb-12"
-        >
-          {categories.map((category) => (
-            <button
-              key={category}
-              type="button"
-              onClick={() => setFilter(category.toLowerCase())}
-              className={`px-4 py-2 rounded-full text-base sm:text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
-                filter === category.toLowerCase()
-                  ? "bg-primary text-primary-foreground"
-                  : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
-              }`}
-            >
-              {category === "all" ? "Tous" : category}
-            </button>
-          ))}
-        </motion.div>
+        <Reveal variant="fade" className="flex flex-wrap gap-3 mb-12">
+          {categories.map((category) => {
+            const value = category.toLowerCase();
+            const active = filter === value;
+            return (
+              <button
+                key={category}
+                type="button"
+                onClick={() => setFilter(value)}
+                className={cn("filter-chip", active ? "filter-chip-active" : "filter-chip-idle")}
+                aria-pressed={active}
+              >
+                {category === "all" ? "Tous" : category}
+              </button>
+            );
+          })}
+        </Reveal>
 
-        <section className="pb-20">
-          <motion.div
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-            layout
-          >
+        {reduced ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 lg:gap-6">
+            {filteredProjects.map((project, index) => (
+              <ProjectCard key={project.id} project={project} index={index} />
+            ))}
+          </div>
+        ) : (
+          <motion.div layout className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 lg:gap-6">
             <AnimatePresence mode="popLayout">
               {filteredProjects.map((project, index) => (
                 <motion.div
                   key={project.id}
                   layout
-                  variants={cardVariants}
-                  initial="hidden"
-                  animate="visible"
-                  exit="exit"
-                  custom={index}
-                  whileHover={{ scale: 1.02, boxShadow: "0 20px 40px -12px rgb(0 0 0 / 0.25)" }}
-                  className="glass-card rounded-xl p-6 group relative flex flex-col"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.25 }}
                 >
-                  <div className="aspect-video bg-secondary rounded-lg mb-4 overflow-hidden flex items-center justify-center relative">
-                    {/\.(mp4|webm)(\?|$)/i.test(project.image) ? (
-                      <video
-                        src={getAssetUrl(project.image)}
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
-                        className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-110"
-                      />
-                    ) : (
-                      <img
-                        src={getAssetUrl(project.image)}
-                        alt={`Image de ${project.name}`}
-                        className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-110"
-                      />
-                    )}
-                    <div className="absolute top-3 right-3 text-white text-sm bg-black/60 px-2 py-1 rounded-md">
-                      {project.date}
-                    </div>
-                    {project.inDevelopment && (
-                      <span className="absolute top-3 left-3 text-sm font-medium bg-amber-500/90 text-amber-950 px-2 py-1 rounded-md">
-                        En cours de développement
-                      </span>
-                    )}
-                  </div>
-                  <h3 className="text-xl font-semibold mb-2">{project.name}</h3>
-                  <p className="text-base leading-relaxed text-muted-foreground mb-4 flex-grow">{project.Shortdescription}</p>
-                  <div className="flex items-center justify-between gap-2 mt-auto pt-2">
-                    <Link
-                      to={`/projects/${project.id}`}
-                      className="text-primary hover:text-primary/80 transition-colors inline-flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded"
-                    >
-                      En savoir plus
-                    </Link>
-                    <span className="text-sm text-muted-foreground bg-secondary/80 px-2 py-1 rounded-md shrink-0">
-                      {project.category}
-                    </span>
-                  </div>
+                  <ProjectCard project={project} index={index} />
                 </motion.div>
               ))}
             </AnimatePresence>
           </motion.div>
-        </section>
+        )}
       </div>
     </div>
   );

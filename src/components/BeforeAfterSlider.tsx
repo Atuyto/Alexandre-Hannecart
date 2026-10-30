@@ -1,5 +1,6 @@
 import { useRef, useState, useCallback, useMemo, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 
 interface BeforeAfterSliderProps {
   beforeImageUrl: string;
@@ -16,6 +17,7 @@ export function BeforeAfterSlider({
   afterLabel = "APRÈS",
   className = "",
 }: BeforeAfterSliderProps) {
+  const reduced = usePrefersReducedMotion();
   const [position, setPosition] = useState(50);
   const containerRef = useRef<HTMLDivElement>(null);
   const beforeWrapRef = useRef<HTMLDivElement>(null);
@@ -85,7 +87,7 @@ export function BeforeAfterSlider({
 
   // GIF sur canvas via gifler (import dynamique pour éviter le conflit CJS/ESM avec Vite)
   useEffect(() => {
-    if (!isGif) return;
+    if (!isGif || reduced) return;
     const beforeCanvas = beforeCanvasRef.current;
     const afterCanvas = afterCanvasRef.current;
     if (!beforeCanvas || !afterCanvas) return;
@@ -114,19 +116,42 @@ export function BeforeAfterSlider({
       beforeAnimatorRef.current = null;
       afterAnimatorRef.current = null;
     };
-  }, [isGif, beforeSrc, afterSrc]);
+  }, [isGif, beforeSrc, afterSrc, reduced]);
+
+  const renderVideo = (src: string, className: string) =>
+    reduced ? (
+      <video
+        src={src}
+        controls
+        muted
+        playsInline
+        preload="metadata"
+        className={className}
+      />
+    ) : (
+      <video
+        src={src}
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="metadata"
+        className={className}
+      />
+    );
 
   const beforeContent = useVideo ? (
-    <video
-      key="before"
-      src={beforeSrc}
-      autoPlay
-      loop
-      muted
-      playsInline
-      className="absolute inset-0 w-full h-full object-contain"
-    />
+    renderVideo(beforeSrc, "absolute inset-0 w-full h-full object-contain")
   ) : isGif ? (
+    reduced ? (
+      <img
+        src={beforeSrc}
+        alt={beforeLabel}
+        className="absolute inset-0 w-full h-full object-contain"
+        draggable={false}
+        loading="lazy"
+      />
+    ) : (
     <div className="absolute inset-0 flex items-center justify-center">
       <img
         src={beforeSrc}
@@ -140,6 +165,7 @@ export function BeforeAfterSlider({
         className="relative max-w-full max-h-full z-[1]"
       />
     </div>
+    )
   ) : (
     <img
       key="before"
@@ -152,16 +178,20 @@ export function BeforeAfterSlider({
   );
 
   const afterContent = useVideo ? (
-    <video
-      key="after"
-      src={afterSrc}
-      autoPlay
-      loop
-      muted
-      playsInline
-      className="absolute right-0 top-0 bottom-0 w-full h-full object-contain object-right"
-    />
+    renderVideo(
+      afterSrc,
+      "absolute right-0 top-0 bottom-0 w-full h-full object-contain object-right"
+    )
   ) : isGif ? (
+    reduced ? (
+      <img
+        src={afterSrc}
+        alt={afterLabel}
+        className="absolute inset-0 w-full h-full object-contain object-right"
+        draggable={false}
+        loading="lazy"
+      />
+    ) : (
     <div className="absolute right-0 top-0 bottom-0 left-0 flex items-center justify-center">
       <img
         src={afterSrc}
@@ -175,6 +205,7 @@ export function BeforeAfterSlider({
         className="relative max-w-full max-h-full z-[1]"
       />
     </div>
+    )
   ) : (
     <img
       key="after"
@@ -213,17 +244,17 @@ export function BeforeAfterSlider({
 
       {/* Labels */}
       <div className="absolute inset-0 pointer-events-none flex justify-between items-start p-4">
-        <span className="text-white font-bold text-lg md:text-xl drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]">
+        <span className="rounded-md border border-border bg-card/90 px-2 py-1 text-sm font-bold text-foreground shadow-sm md:text-base">
           {beforeLabel}
         </span>
-        <span className="text-white font-bold text-lg md:text-xl drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]">
+        <span className="rounded-md border border-border bg-card/90 px-2 py-1 text-sm font-bold text-foreground shadow-sm md:text-base">
           {afterLabel}
         </span>
       </div>
 
       {/* Ligne verticale + poignée draggable */}
       <div
-        className="absolute top-0 bottom-0 w-1 cursor-ew-resize z-10 flex items-center justify-center"
+        className="absolute top-0 bottom-0 w-1 cursor-ew-resize z-10 flex items-center justify-center touch-none"
         style={{ left: `${position}%`, transform: "translateX(-50%)" }}
         onPointerDown={handlePointerDown}
         onPointerMove={handlePointerMove}
@@ -241,10 +272,10 @@ export function BeforeAfterSlider({
           if (e.key === "ArrowRight") setPosition((p) => clamp(p + step));
         }}
       >
-        <div className="absolute inset-y-0 w-px bg-white shadow-[0_0_0_1px_rgba(0,0,0,0.5)]" />
-        <div className="absolute w-10 h-10 rounded-full bg-white border-2 border-black/30 shadow-md flex items-center justify-center gap-0.5">
-          <ChevronLeft className="w-4 h-4 text-black/70" aria-hidden />
-          <ChevronRight className="w-4 h-4 text-black/70" aria-hidden />
+        <div className="absolute inset-y-0 w-px bg-foreground/80 shadow-[0_0_0_1px_hsl(var(--border))]" />
+        <div className="absolute flex h-11 w-11 items-center justify-center gap-0.5 rounded-full border-2 border-border bg-card shadow-md">
+          <ChevronLeft className="h-4 w-4 text-muted-foreground" aria-hidden />
+          <ChevronRight className="h-4 w-4 text-muted-foreground" aria-hidden />
         </div>
       </div>
     </div>

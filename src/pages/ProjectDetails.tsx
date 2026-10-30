@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { BeforeAfterSlider } from "@/components/BeforeAfterSlider";
 import { Copy, ExternalLink } from "lucide-react";
 import { toast } from "sonner";
+import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 
 const splitTextOnDot = (text: string) => {
   return text.split(".").map((sentence, index) => {
@@ -29,7 +30,7 @@ const getYoutubeVideoId = (url: string): string => {
   return match && match[2].length === 11 ? match[2] : "";
 };
 
-const renderCarouselItem = (item: string) => {
+const renderCarouselItem = (item: string, projectName: string) => {
   if (isYoutubeUrl(item)) {
     const videoId = getYoutubeVideoId(item);
     return (
@@ -37,6 +38,7 @@ const renderCarouselItem = (item: string) => {
         <iframe
           width="100%"
           height="100%"
+          title={`Vidéo YouTube — ${projectName}`}
           src={`https://www.youtube.com/embed/${videoId}`}
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
@@ -49,8 +51,10 @@ const renderCarouselItem = (item: string) => {
     <div className="w-full h-[300px] md:h-[400px] rounded-lg overflow-hidden flex items-center justify-center bg-secondary/30 group">
       <img
         src={getAssetUrl(item)}
-        alt="Project media"
-        className="max-w-full max-h-full object-contain transition-transform duration-300 group-hover:scale-110"
+        alt={`Illustration du projet ${projectName}`}
+        loading="lazy"
+        decoding="async"
+        className="max-w-full max-h-full object-contain"
       />
     </div>
   );
@@ -59,7 +63,38 @@ const renderCarouselItem = (item: string) => {
 function ProjectDetails() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
+  const reduced = usePrefersReducedMotion();
   const project = getProjectById(id);
+
+  const mount = (y = 0, delay = 0) =>
+    reduced
+      ? ({ initial: false, animate: { opacity: 1, y: 0 } } as const)
+      : ({
+          initial: { opacity: 0, y },
+          animate: { opacity: 1, y: 0 },
+          transition: { duration: 0.4, delay },
+        } as const);
+
+  const inView = (
+    opts: { y?: number; x?: number; scale?: number; delay?: number; duration?: number; margin?: string } = {}
+  ) =>
+    reduced
+      ? ({
+          initial: false,
+          whileInView: { opacity: 1, y: 0, x: 0, scale: 1 },
+          viewport: { once: true, margin: opts.margin ?? "-80px" },
+        } as const)
+      : ({
+          initial: {
+            opacity: 0,
+            ...(opts.y != null ? { y: opts.y } : { y: 24 }),
+            ...(opts.x != null ? { x: opts.x } : {}),
+            ...(opts.scale != null ? { scale: opts.scale } : {}),
+          },
+          whileInView: { opacity: 1, y: 0, x: 0, scale: 1 },
+          viewport: { once: true, margin: opts.margin ?? "-80px" },
+          transition: { duration: opts.duration ?? 0.5, delay: opts.delay ?? 0 },
+        } as const);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -90,31 +125,26 @@ function ProjectDetails() {
     const hasResultContent = hasGallery || hasDemo;
 
     return (
-      <div className="container mx-auto px-4 sm:px-6 py-12 pt-8">
+    <div className="page-transition pt-8 pb-20">
+      <div className="site-shell-wide max-w-4xl mx-auto">
         <motion.h1
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4 }}
-          className="text-3xl sm:text-4xl font-bold text-center mb-4 bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/70 font-display"
+          {...mount(12)}
+          className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-4 font-display tracking-tight"
         >
           {project.name}
         </motion.h1>
         <motion.p
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, delay: 0.1 }}
+          {...mount(8, 0.1)}
           className="text-base text-center text-muted-foreground mb-4 max-w-2xl mx-auto"
         >
           {project.Shortdescription}
         </motion.p>
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.15 }}
+          {...mount(0, 0.15)}
           className="flex justify-center mb-16"
         >
           {project.inDevelopment && (
-            <span className="text-sm font-medium bg-amber-500/90 text-amber-950 px-3 py-1.5 rounded-md">
+            <span className="badge-in-development">
               En cours de développement
             </span>
           )}
@@ -123,11 +153,8 @@ function ProjectDetails() {
         <div className="max-w-3xl mx-auto space-y-16 sm:space-y-24">
           {/* Étape 1 – Problématique */}
           <motion.section
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.5 }}
-            className="glass-card rounded-2xl p-5 sm:p-6 md:p-8"
+            {...inView({ y: 24 })}
+            className="surface-card p-5 sm:p-6 md:p-8"
           >
             <span className="text-base sm:text-sm font-semibold text-primary uppercase tracking-wider">Étape 1</span>
             <h2 className="text-2xl font-bold mt-2 mb-4 font-display">Problématique</h2>
@@ -137,11 +164,8 @@ function ProjectDetails() {
           {/* Étape 2 – Solutions */}
           {project.solutions && project.solutions.length > 0 && (
             <motion.section
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.5 }}
-              className="glass-card rounded-2xl p-5 sm:p-6 md:p-8"
+              {...inView({ y: 24 })}
+              className="surface-card p-5 sm:p-6 md:p-8"
             >
               <span className="text-base sm:text-sm font-semibold text-primary uppercase tracking-wider">Étape 2</span>
               <h2 className="text-2xl font-bold mt-2 mb-6 font-display">Solutions</h2>
@@ -149,10 +173,7 @@ function ProjectDetails() {
                 {project.solutions.map((solution, i) => (
                   <motion.li
                     key={i}
-                    initial={{ opacity: 0, x: -12 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.08, duration: 0.35 }}
+                    {...inView({ x: -12, delay: i * 0.08, duration: 0.35, margin: "0px" })}
                     className="flex gap-3 items-start"
                   >
                     <span className="mt-1.5 w-2 h-2 rounded-full bg-primary shrink-0" />
@@ -166,11 +187,8 @@ function ProjectDetails() {
           {/* Étape 3 – Technologies (optionnelle) */}
           {project.technologies && project.technologies.length > 0 && (
             <motion.section
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.5 }}
-              className="glass-card rounded-2xl p-5 sm:p-6 md:p-8"
+              {...inView({ y: 24 })}
+              className="surface-card p-5 sm:p-6 md:p-8"
             >
               <span className="text-base sm:text-sm font-semibold text-primary uppercase tracking-wider">Étape 3</span>
               <h2 className="text-2xl font-bold mt-2 mb-6 font-display">Technologies</h2>
@@ -178,10 +196,7 @@ function ProjectDetails() {
                 {project.technologies.map((tech, i) => (
                   <motion.span
                     key={tech}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.05 }}
+                    {...inView({ scale: 0.9, delay: i * 0.05, margin: "0px" })}
                   >
                     <Badge variant="secondary" className="text-xs font-normal py-1.5 px-3">
                       {tech}
@@ -194,11 +209,8 @@ function ProjectDetails() {
 
           {/* Dernière étape – Résultat (galerie + démo web si présent) */}
           <motion.section
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.5 }}
-            className="glass-card rounded-2xl p-5 sm:p-6 md:p-8"
+            {...inView({ y: 24 })}
+            className="surface-card p-5 sm:p-6 md:p-8"
           >
             <span className="text-base sm:text-sm font-semibold text-primary uppercase tracking-wider">Étape {resultStepNumber}</span>
             <h2 className="text-2xl font-bold mt-2 mb-6 font-display">Résultat</h2>
@@ -223,7 +235,7 @@ function ProjectDetails() {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {project.carouselImages!.map((item: string, index: number) => (
                       <div key={index} className="rounded-xl overflow-hidden border border-border">
-                        {renderCarouselItem(item)}
+                        {renderCarouselItem(item, project.name)}
                       </div>
                     ))}
                   </div>
@@ -247,7 +259,7 @@ function ProjectDetails() {
                         type="button"
                         variant="ghost"
                         size="icon"
-                        className="h-8 w-8 shrink-0"
+                        className="h-11 w-11 shrink-0"
                         onClick={copyCredentials}
                         aria-label="Copier les identifiants"
                       >
@@ -285,9 +297,7 @@ function ProjectDetails() {
           </motion.section>
 
           <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
+            {...inView({ y: 0, margin: "0px", duration: 0.4 })}
             className="text-center pt-8"
           >
             <Button
@@ -301,28 +311,26 @@ function ProjectDetails() {
           </motion.div>
         </div>
       </div>
+    </div>
     );
   }
 
   /* Layout par défaut */
   return (
-    <div className="container mx-auto px-4 sm:px-6 py-12 pt-8">
+    <div className="page-transition pt-8 pb-20">
+      <div className="site-shell-wide max-w-4xl mx-auto">
       <motion.h1
-        initial={{ opacity: 0, y: 12 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4 }}
-        className="text-3xl sm:text-4xl font-bold text-center mb-4 bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/70 font-display"
+        {...mount(12)}
+        className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-4 font-display tracking-tight"
       >
         {project.name}
       </motion.h1>
       {project.inDevelopment && (
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.1 }}
+          {...mount(0, 0.1)}
           className="flex justify-center mb-12"
         >
-          <span className="text-sm font-medium bg-amber-500/90 text-amber-950 px-3 py-1.5 rounded-md">
+          <span className="badge-in-development">
             En cours de développement
           </span>
         </motion.div>
@@ -331,16 +339,14 @@ function ProjectDetails() {
 
       <div className="max-w-4xl mx-auto space-y-16">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, delay: 0.1 }}
+          {...mount(20, 0.1)}
           className="flex flex-col md:flex-row items-center gap-8"
         >
-          <div className="w-full md:w-1/2 glass-card p-4 rounded-xl">
+          <div className="w-full md:w-1/2 surface-card p-4 rounded-xl">
             {project.carouselImages?.length > 0 &&
-              renderCarouselItem(project.carouselImages[0])}
+              renderCarouselItem(project.carouselImages[0], project.name)}
           </div>
-          <div className="w-full md:w-1/2 glass-card p-6 rounded-xl">
+          <div className="w-full md:w-1/2 surface-card p-6 rounded-xl">
             <div className="text-lg leading-relaxed">
               {splitTextOnDot(project.Description)}
             </div>
@@ -348,12 +354,10 @@ function ProjectDetails() {
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, delay: 0.2 }}
+          {...mount(20, 0.2)}
           className="flex flex-col-reverse md:flex-row items-center gap-8"
         >
-          <div className="w-full md:w-1/2 glass-card p-6 rounded-xl">
+          <div className="w-full md:w-1/2 surface-card p-6 rounded-xl">
             <p className="text-lg leading-relaxed">
               <span className="font-semibold text-primary">Objectif: </span>
               {splitTextOnDot(project.objective)}
@@ -362,31 +366,27 @@ function ProjectDetails() {
               {splitTextOnDot(project.details)}
             </p>
           </div>
-          <div className="w-full md:w-1/2 glass-card p-4 rounded-xl">
+          <div className="w-full md:w-1/2 surface-card p-4 rounded-xl">
             {project.carouselImages?.length > 1 &&
-              renderCarouselItem(project.carouselImages[1])}
+              renderCarouselItem(project.carouselImages[1], project.name)}
           </div>
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, delay: 0.3 }}
+          {...mount(20, 0.3)}
           className="space-y-6"
         >
           <h2 className="text-2xl font-bold text-primary">Galerie</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {project.carouselImages?.map((item: string, index: number) => (
-              <div key={index} className="glass-card p-4 rounded-xl">
-                {renderCarouselItem(item)}
+              <div key={index} className="surface-card p-4 rounded-xl">
+                {renderCarouselItem(item, project.name)}
               </div>
             ))}
           </div>
         </motion.div>
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.4 }}
+          {...mount(0, 0.4)}
           className="text-left pt-8"
         >
           {project.DesignBy !== "" && (
@@ -399,9 +399,7 @@ function ProjectDetails() {
           )}
         </motion.div>
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.45 }}
+          {...mount(0, 0.45)}
           className="text-center pt-8"
         >
           <button
@@ -413,6 +411,7 @@ function ProjectDetails() {
           </button>
         </motion.div>
       </div>
+    </div>
     </div>
   );
 }

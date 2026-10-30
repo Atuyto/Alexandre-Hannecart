@@ -1,17 +1,23 @@
 import { Link, useLocation } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { cn } from "@/lib/utils";
+import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 
 const navLinks = [
   { to: "/", label: "Accueil" },
   { to: "/projects", label: "Projets" },
   { to: "/about", label: "À propos" },
-  { to: "/contact", label: "Contact" },
 ];
 
 const Navbar = () => {
   const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
+  const reduced = usePrefersReducedMotion();
+
+  useEffect(() => {
+    setIsOpen(false);
+  }, [location.pathname]);
 
   const isActive = (path: string) => {
     if (path === "/") return location.pathname === "/";
@@ -19,30 +25,32 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-[100] bg-background border-b border-border shadow-sm">
-      <div className="container mx-auto px-6 h-14 flex items-center justify-between">
+    <header className="fixed top-0 left-0 right-0 z-[100] border-b border-border bg-background/95 backdrop-blur-sm">
+      <nav
+        className="site-shell h-14 flex items-center justify-between"
+        aria-label="Navigation principale"
+      >
         <Link
           to="/"
-          className="text-lg font-semibold text-foreground font-display focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded"
+          className="flex items-center gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-lg"
         >
-          Alexandre Hannecart
+          <span className="flex h-9 w-9 items-center justify-center rounded-md border border-border bg-secondary font-display text-sm font-bold text-foreground">
+            AH
+          </span>
+          <span className="hidden sm:block font-display text-base font-semibold tracking-tight text-foreground">
+            Alexandre Hannecart
+          </span>
         </Link>
 
         <button
           type="button"
-          className="text-foreground md:hidden p-2 -mr-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded"
+          className="md:hidden flex h-11 w-11 items-center justify-center -mr-1 text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-lg"
           onClick={() => setIsOpen(!isOpen)}
           aria-label={isOpen ? "Fermer le menu" : "Ouvrir le menu"}
           aria-expanded={isOpen}
+          aria-controls="mobile-nav"
         >
-          <svg
-            className="w-6 h-6 transition-transform"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth={2}
-            viewBox="0 0 24 24"
-            aria-hidden
-          >
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth={1.75} viewBox="0 0 24 24" aria-hidden>
             {isOpen ? (
               <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
             ) : (
@@ -56,50 +64,60 @@ const Navbar = () => {
             <Link
               key={to}
               to={to}
-              className={`relative px-3 py-2 rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
-                isActive(to)
-                  ? "text-foreground"
-                  : "text-muted-foreground hover:text-foreground"
-              }`}
+              className={cn(
+                "nav-link rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+                isActive(to) && "nav-link-active"
+              )}
+              aria-current={isActive(to) ? "page" : undefined}
             >
               {label}
-              {isActive(to) && (
-                <span className="absolute bottom-0 left-2 right-2 h-0.5 bg-primary rounded-full" />
-              )}
             </Link>
           ))}
+          <Link to="/contact" className="btn-primary ml-3 !py-2.5 !px-5 text-xs sm:text-sm">
+            Contact
+          </Link>
         </div>
-      </div>
+      </nav>
 
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
+            id="mobile-nav"
+            initial={reduced ? false : { opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.2 }}
-            className="md:hidden overflow-hidden border-b border-border bg-background/95 backdrop-blur"
+            exit={reduced ? undefined : { opacity: 0, height: 0 }}
+            transition={{ duration: reduced ? 0 : 0.2 }}
+            className="md:hidden overflow-hidden border-b border-border bg-card"
           >
-            <div className="container mx-auto px-6 py-4 flex flex-col gap-1">
+            <div className="site-shell py-4 flex flex-col gap-1">
               {navLinks.map(({ to, label }) => (
                 <Link
                   key={to}
                   to={to}
-                  onClick={() => setIsOpen(false)}
-                  className={`px-3 py-3 rounded-md text-base font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
-                    isActive(to)
-                      ? "text-foreground bg-primary/10"
-                      : "text-muted-foreground hover:text-foreground hover:bg-secondary/50"
-                  }`}
+                  className={cn(
+                    "px-3 py-3 rounded-lg text-base font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+                    isActive(to) ? "text-foreground bg-secondary" : "text-muted-foreground hover:bg-secondary/50"
+                  )}
+                  aria-current={isActive(to) ? "page" : undefined}
                 >
                   {label}
                 </Link>
               ))}
+              <Link
+                to="/contact"
+                className={cn(
+                  "px-3 py-3 rounded-lg text-base font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+                  isActive("/contact") ? "text-foreground bg-secondary" : "text-muted-foreground hover:bg-secondary/50"
+                )}
+                aria-current={isActive("/contact") ? "page" : undefined}
+              >
+                Contact
+              </Link>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
-    </nav>
+    </header>
   );
 };
 
